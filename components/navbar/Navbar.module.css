@@ -1,0 +1,70 @@
+.brand-logo {
+  width: 130px;
+  max-height: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: top; /* equivalent to Bootstrap's align-top */
+}
+
+.navbar-text-size {
+  font-size: 0.8rem;
+}
+
+.bg-body-tertiary {
+  background-color: rgb(0, 7, 20) !important;
+  color: white;
+}
+
+.bg-body-tertiary-dark {
+  background-color: #ffffff !important;
+  color: aliceblue;
+}
+
+/* :global(.navbar) {
+  min-height: 48px !important;
+  padding: 0.3rem 0rem !important;
+}
+
+:global(.navbar-brand) {
+  min-height: 48px !important;
+  padding: 0.3rem 0rem !important;
+} */
+
+.theme-checkbox {
+  --toggle-size: 8px;
+  cursor: pointer;
+  appearance: none;
+  width: 6.25em;
+  height: 3.125em;
+  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background-size: 205%;
+  background-position: 0;
+  transition: 0.4s;
+  border-radius: 99em;
+  position: relative;
+  font-size: var(--toggle-size);
+}
+
+.theme-checkbox::before {
+  content: "";
+  width: 2.25em;
+  height: 2.25em;
+  position: absolute;
+  top: 0.438em;
+  left: 0.438em;
+  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background-size: 205%;
+  background-position: 100%;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.theme-checkbox:checked::before {
+  left: calc(100% - 2.25em - 0.438em);
+  background-position: 0;
+}
+
+.theme-checkbox:checked {
+  background-position: 100%;
+}

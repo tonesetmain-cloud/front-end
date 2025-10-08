@@ -1,0 +1,52 @@
+# Node.js dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+
+# TypeScript specific
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.*  # For multiple environments like .env.local, .env.production, etc.
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+
+# Static files
+/public/static/*.map
+
+# Temporary files
+*.log
+*.tmp
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Next.js export
+export/
+
+# Miscellaneous
+*.gz

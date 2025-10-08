@@ -1,0 +1,26 @@
+.card {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 26px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  max-width: 350px;
+}
+
+:global(.dark-theme) .card {
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
+  color: var(--text-color);
+}
+
+.description {
+  font-size: 0.8rem;
+  color: var(--para);
+}
+
+.icon {
+  font-size: 2rem;
+  max-width: 30px;
+  color: var(--primary);
+  margin-bottom: 12px;
+}

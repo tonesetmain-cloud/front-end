@@ -1,0 +1,34 @@
+:root {
+  --background: #fcfcfc;
+  --text-color: #111;
+  --para: #44444e;
+  --accent-orange: #ff6b2c;
+  --accent-blue: #2c7dff;
+  --royal-blue: #1a2a80;
+  --royal-blue-light: #d7dffa;
+  --accent-green: #00c851;
+  --btn-radius: 6px;
+  --card-bg: #ffffff;
+  --para-dark-theme: #d0d0d0;
+}
+
+.light-theme {
+  --background: #fcfcfc;
+  --text-color: #111;
+}
+
+.dark-theme {
+  --background: #212529;
+  --text-color: #fff;
+  --para: #ffffff;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background) !important;
+  color: var(--text-color) !important;
+  height: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

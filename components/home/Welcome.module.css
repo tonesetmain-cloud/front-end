@@ -1,0 +1,110 @@
+.container {
+  position: relative;
+  overflow: hidden;
+  height: 93vh;
+  background-color: var(--background);
+}
+
+.title {
+  padding: 19vh 20vw 0 20vw;
+  justify-content: center;
+  text-align: center;
+  font-weight: 550;
+  z-index: 3;
+  position: relative;
+}
+
+.light-theme {
+  text-shadow: 0 1px 8px #fff;
+}
+
+:global(.dark-theme) .description {
+  color: var(--para-dark-theme);
+}
+
+.description {
+  padding: 0 23vw;
+  text-align: center;
+  color: var(--para);
+  position: relative;
+}
+
+.buttonContainer {
+  padding: 5vh 25vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonFree {
+  background-color: rgb(0, 0, 0);
+  border-radius: var(--btn-radius);
+  padding: 10px 20px;
+  border: none;
+  color: white;
+}
+
+.buttonPro {
+  background-color: var(--accent-blue);
+  color: white;
+  border: none;
+  border-radius: var(--btn-radius);
+  padding: 10px 20px;
+  margin-left: 20px;
+}
+
+/* ...circle styles and other styles remain unchanged... */
+
+.hero-bg {
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+  min-height: 30vw;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+:global(.dark-theme) .circle {
+  filter: brightness(0.7);
+}
+
+.circle.large {
+  width: 28vw;
+  height: 50vh;
+  top: -100px;
+  right: -70px;
+  background: radial-gradient(circle, #3c7ffb 60%, #ffffff00 120%);
+  opacity: 0.45;
+}
+
+.circle.medium {
+  width: 280px;
+  height: 280px;
+  top: 60px;
+  right: 0px;
+  background: radial-gradient(circle, #97bafc 60%, #ffffff00 120%);
+  opacity: 0.55;
+}
+
+.circle.small {
+  width: 88px;
+  height: 88px;
+  top: 140px;
+  left: 10vw;
+  background: radial-gradient(circle, #e4edfe 50%, #ffffff00 120%);
+  opacity: 0.55;
+}
+
+.circle.xsmall {
+  width: 36px;
+  height: 36px;
+  top: 120px;
+  left: 17vw;
+  background: radial-gradient(circle, #e4edfe 70%, #ffffff00 120%);
+  opacity: 0.6;
+}

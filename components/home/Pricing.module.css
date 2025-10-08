@@ -1,0 +1,71 @@
+.pricing {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+}
+
+.priceCards {
+  display: flex;
+  flex-direction: row;
+  gap: 20vw;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.priceCards > :global(.priceCard) {
+  flex: 1 1 300px;
+  max-width: 400px;
+}
+
+.themeCheckbox {
+  --toggle-size: 8px;
+  cursor: pointer;
+  appearance: none;
+  width: 6.25em;
+  height: 3.125em;
+  background: linear-gradient(to right, #efefef 50%, #1a2a80 50%) no-repeat;
+  background-size: 205%;
+  background-position: 0;
+  transition: 0.4s;
+  border-radius: 99em;
+  position: relative;
+  font-size: var(--toggle-size);
+}
+
+.themeCheckbox::before {
+  content: "";
+  width: 2.25em;
+  height: 2.25em;
+  position: absolute;
+  top: 0.438em;
+  left: 0.438em;
+  background: linear-gradient(to right, #efefef 50%, #1a2a80 50%) no-repeat;
+  background-size: 205%;
+  background-position: 100%;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.themeCheckbox:checked::before {
+  left: calc(100% - 2.25em - 0.438em);
+  background-position: 0;
+}
+
+.themeCheckbox:checked {
+  background-position: 100%;
+}
+
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px; /* space between elements */
+}
+
+.toggleContainer p {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--text-color);
+}

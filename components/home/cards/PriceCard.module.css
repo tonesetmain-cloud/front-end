@@ -1,0 +1,85 @@
+.priceCard {
+  margin: 50px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  font-size: 0.9rem;
+}
+
+:global(.dark-theme) .priceCard {
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
+  color: var(--text-color);
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin: 0;
+}
+
+.featuresList li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  color: rgb(103, 102, 102);
+}
+
+:global(.dark-theme) .featuresList li {
+  color: rgb(169, 169, 169);
+}
+
+/* modern dot */
+.featuresList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--royal-blue);
+  border-radius: 50%;
+}
+
+:global(.dark-theme) .featuresList li::before {
+  background-color: var(--royal-blue-light);
+}
+
+.selectPlanButton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--accent-blue);
+  color: white;
+  border: none;
+  width: 95%;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  margin-bottom: 2vh;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.price {
+  font-size: 1.8rem; /* main price size */
+  font-weight: 650;
+  margin: 0;
+}
+
+.period {
+  font-size: 1rem; /* smaller period */
+  font-weight: 400;
+  color: #888; /* optional lighter color */
+}
+
+.title {
+  font-size: 0.8rem;
+  font-weight: 900;
+  margin-right: 0;
+  margin-left: auto;
+}

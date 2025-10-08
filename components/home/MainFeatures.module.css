@@ -1,0 +1,22 @@
+.mainFeatures {
+  background-color: var(--background);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 10px 20vh 10px;
+  gap: 40px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  padding-bottom: 5vh;
+}
+
+.myIcon {
+  color: var(--accent-blue);
+}

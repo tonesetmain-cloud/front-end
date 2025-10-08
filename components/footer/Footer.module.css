@@ -1,0 +1,78 @@
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 6vh 6vw 8vh 6vw;
+  color: var(--text-color);
+  min-height: 180px;
+  background-color: var(--background);
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.logoSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 210px;
+}
+
+.logo {
+  height: 56px;
+  margin-bottom: 6px;
+}
+
+.logoText {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+.linksSection {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  min-width: 580px;
+}
+
+.linksSection h4 {
+  font-size: 1.22rem;
+  margin-bottom: 16px;
+}
+
+.linksSection a {
+  display: block;
+  color: var(--para);
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  transition: color 0.16s;
+}
+
+:global(.dark-theme) .linksSection a {
+  color: var(--para-dark-theme);
+}
+
+.linksSection a:hover {
+  color: var(--accent-blue);
+}
+
+/* Responsive for mobile */
+@media (max-width: 800px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 16px;
+  }
+  .logoSection {
+    margin-bottom: 30px;
+  }
+  .linksSection {
+    flex-direction: column;
+    min-width: unset;
+  }
+  .linksSection > div {
+    margin-bottom: 22px;
+  }
+}

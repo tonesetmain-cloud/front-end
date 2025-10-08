@@ -1,0 +1,17 @@
+{
+  "freeFeatures": [
+    "Basic Color Palette Generation",
+    "Access to Limited Templates",
+    "Email Support",
+    "Lifetime Access",
+    "Open AI low end model"
+  ],
+  "proFeatures": [
+    "Advanced Color Palette Generation",
+    "Access to All Templates",
+    "Priority Email Support",
+    "Priority Phone Call Support",
+    "Lifetime Access",
+    "Open AI high end model"
+  ]
+}
