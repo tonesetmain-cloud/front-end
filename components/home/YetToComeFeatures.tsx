@@ -11,7 +11,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const MainFeatures = () => {
   return (
-    <div className={styles.mainFeatures}>
+    <div id="yet-to-come" className={styles.mainFeatures}>
       <h2 className={styles.title}> Our Yet To Come Features</h2>
       <div className={styles.container}>
         <Card

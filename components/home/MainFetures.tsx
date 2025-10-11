@@ -12,7 +12,7 @@ import { faComputerMouse } from "@fortawesome/free-solid-svg-icons";
 
 const MainFeatures = () => {
   return (
-    <div className={styles.mainFeatures}>
+    <div  id="features" className={styles.mainFeatures}>
       <h2 className={styles.title}> Our Main Features</h2>
       <div className={styles.container}>
         <Card

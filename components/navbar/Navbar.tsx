@@ -22,7 +22,7 @@ function NavBar() {
       } sticky-top ${styles["navbar-text-size"]}`}
       expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="#welcome">
           <img
             src={
               theme === "dark"
@@ -36,14 +36,13 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
+            <Nav.Link href="#welcome">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+              <NavDropdown.Item href="#yet-to-come">
+                Yet To Come Features
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item href="#pricing">Pricing</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Separated link
@@ -51,6 +50,8 @@ function NavBar() {
             </NavDropdown>
             {/* this is antest of the hero in the  */}
           </Nav>
+          <button className={styles["sign-up"]}> Sign Up</button>
+          <button className={styles["sign-in"]}> Sign In</button>
           <input
             type="checkbox"
             className={styles["theme-checkbox"]}

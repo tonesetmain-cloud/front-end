@@ -3,7 +3,7 @@ import styles from "./Welcome.module.css";
 
 const Welcome = () => {
   return (
-    <div className={styles.container}>
+    <div id="welcome" className={styles.container}>
       <div className={styles.circle + " " + styles.large}></div>
       <div className={styles.circle + " " + styles.medium}></div>
       <div className={styles.circle + " " + styles.small}></div>

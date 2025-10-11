@@ -21,7 +21,7 @@ const Pricing = () => {
   if (!features) return <p>Loading...</p>;
 
   return (
-    <div className={styles.pricing}>
+    <div id="pricing" className={styles.pricing}>
       <h2>Simple and Affordable Pricing</h2>
       <p className={styles.subtitle}>
         Get started for free, and choose the pricing plan that fits your needs,
