@@ -7,7 +7,10 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import styles from "./Navbar.module.css";
 import { useTheme } from "../../context/ThemeContext";
 
+import { useRouter } from "next/navigation";
+
 function NavBar() {
+  const router = useRouter();
   const { theme, toggleTheme } = useTheme();
 
   const toggleThemeFunction = () => {
@@ -50,8 +53,17 @@ function NavBar() {
             </NavDropdown>
             {/* this is antest of the hero in the  */}
           </Nav>
-          <button className={styles["sign-up"]}> Sign Up</button>
-          <button className={styles["sign-in"]}> Sign In</button>
+
+          <button
+            className={styles["sign-up"]}
+            onClick={() => router.push("/signup")}>
+            Sign Up
+          </button>
+          <button
+            className={styles["sign-in"]}
+            onClick={() => router.push("/signin")}>
+            Sign In
+          </button>
           <input
             type="checkbox"
             className={styles["theme-checkbox"]}
