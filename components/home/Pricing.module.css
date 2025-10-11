@@ -5,6 +5,10 @@
   background-color: var(--background);
 }
 
+.subtitle {
+  font-size: 2.2vh;
+}
+
 .priceCards {
   display: flex;
   flex-direction: row;

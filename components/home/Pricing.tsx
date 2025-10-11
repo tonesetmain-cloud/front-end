@@ -23,13 +23,13 @@ const Pricing = () => {
   return (
     <div className={styles.pricing}>
       <h2>Simple and Affordable Pricing</h2>
-      <p>
+      <p className={styles.subtitle}>
         Get started for free, and choose the pricing plan that fits your needs,
         whether you're just starting or ready to scale.
       </p>
 
       <div className={styles.toggleContainer}>
-        <p>Yearly</p>
+        <p className={styles.toggleText}>Yearly</p>
         <input
           type="checkbox"
           className={styles.themeCheckbox}
@@ -39,7 +39,7 @@ const Pricing = () => {
             setPricingPlans(pricingPlans === "Monthly" ? "Yearly" : "Monthly")
           }
         />
-        <p>Monthly</p>
+        <p className={styles.toggleText}>Monthly</p>
       </div>
 
       <div className={styles.priceCards}>

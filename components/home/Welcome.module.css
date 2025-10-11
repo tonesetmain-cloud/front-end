@@ -10,6 +10,7 @@
   justify-content: center;
   text-align: center;
   font-weight: 550;
+  font-size: 5vh;
   z-index: 3;
   position: relative;
 }
@@ -26,6 +27,7 @@
   padding: 0 23vw;
   text-align: center;
   color: var(--para);
+  font-size: 2.2vh;
   position: relative;
 }
 
@@ -42,6 +44,7 @@
   padding: 10px 20px;
   border: none;
   color: white;
+  font-size: 2.5vh;
 }
 
 .buttonPro {
@@ -50,6 +53,7 @@
   border: none;
   border-radius: var(--btn-radius);
   padding: 10px 20px;
+  font-size: 2.5vh;
   margin-left: 20px;
 }
 
