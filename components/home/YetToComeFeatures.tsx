@@ -15,7 +15,7 @@ const MainFeatures = () => {
       <h2 className={styles.title}> Our Yet To Come Features</h2>
       <div className={styles.container}>
         <Card
-          title={"Project Roadmap Generator"}
+          title={"Project Roadmap "}
           description={
             "Answer a few questions and get a detailed development roadmap with phases, priorities, and timelines."
           }
@@ -51,9 +51,9 @@ const MainFeatures = () => {
           }
         />
         <Card
-          title={"Database Schema Helper"}
+          title={"Database Helper"}
           description={
-            "Just share your app idea and we’ll suggest a basic database layout with key tables and relationships for both SQL and NoSQL."
+            "Just share your app idea and we’ll suggest a basic database layout with key tables and relationships."
           }
           icon={
             <FontAwesomeIcon

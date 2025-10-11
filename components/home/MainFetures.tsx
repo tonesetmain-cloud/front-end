@@ -44,7 +44,7 @@ const MainFeatures = () => {
         <Card
           title={"High-Quality Palettes"}
           description={
-            "We consider harmony, emotional tone, and accessibility to ensure your colors don’t just look good: they work."
+            "We consider emotional tone, and accessibility to ensure your colors don’t just look good: they work."
           }
           icon={
             <FontAwesomeIcon
