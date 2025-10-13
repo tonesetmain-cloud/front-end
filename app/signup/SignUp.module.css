@@ -1,8 +1,16 @@
+/* Wrap formCard in a container */
+.formContainer {
+  background-color: var(--background);
+  padding-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
 .formCard {
   max-width: 600px;
   margin: 5vh auto;
+  margin-bottom: 200px;
   padding: 2rem 2.5rem;
-  background: #fff;
   border-radius: 18px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
   display: flex;
@@ -15,18 +23,60 @@
   color: var(--text-color);
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
 }
-
 .heading {
+  position: relative;
   max-width: 600px;
   margin: 5vh auto;
   padding: 2rem 2.5rem;
-  background: #fff;
+  text-align: center;
+  font-size: 3.5vh;
   border-radius: 18px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  font-weight: 500;
+  z-index: 1;
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 1.2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading span {
+  position: relative;
+  background: #fff; /* matches card background */
+  padding: 0 1rem; /* space around text */
+  z-index: 2;
+}
+
+/* left line */
+.heading::before,
+.heading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 2px; /* thickness */
+  background: #000;
+  width: calc(50% - 70px); /* gap of 120px in center */
+  filter: drop-shadow(0 0 8px #000); /* glow */
+}
+
+/* left line */
+.heading::before {
+  left: 0;
+}
+
+/* right line */
+.heading::after {
+  right: 0;
+}
+
+/* Dark theme */
+:global(.dark-theme) .heading span {
+  background: #181818; /* dark card bg */
+}
+
+:global(.dark-theme) .heading::before,
+:global(.dark-theme) .heading::after {
+  background: #fff;
+  filter: drop-shadow(0 0 8px #fff);
 }
 
 :global(.dark-theme) .heading {
@@ -46,6 +96,7 @@
   background: #23252b;
   color: #e1e1e1;
   border: 1.5px solid #353755;
+  z-index: 100;
 }
 
 .formCard .btn {
@@ -72,4 +123,51 @@
 :global(.dark-theme) .formCard input::placeholder,
 :global(.dark-theme) .formCard .form-control::placeholder {
   color: #d7d7eb;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+:global(.dark-theme) .circle {
+  filter: brightness(0.7);
+}
+
+.circle.large {
+  width: 28vw;
+  height: 50vh;
+  top: -100px;
+  right: -70px;
+  background: radial-gradient(circle, #3c7ffb 60%, #ffffff00 120%);
+  opacity: 0.45;
+}
+
+.circle.medium {
+  width: 280px;
+  height: 280px;
+  top: 60px;
+  right: 0px;
+  background: radial-gradient(circle, #97bafc 60%, #ffffff00 120%);
+  opacity: 0.55;
+}
+
+.circle.small {
+  width: 88px;
+  height: 88px;
+  top: 140px;
+  left: 10vw;
+  background: radial-gradient(circle, #e4edfe 50%, #ffffff00 120%);
+  opacity: 0.55;
+}
+
+.circle.xsmall {
+  width: 36px;
+  height: 36px;
+  top: 120px;
+  left: 17vw;
+  background: radial-gradient(circle, #e4edfe 70%, #ffffff00 120%);
+  opacity: 0.6;
 }

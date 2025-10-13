@@ -3,7 +3,6 @@
 import React from "react";
 import NavBar from "@/components/navbar/Navbar";
 import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 import styles from "./SignUp.module.css";
 import Col from "react-bootstrap/Col";
@@ -11,8 +10,12 @@ import Row from "react-bootstrap/Row";
 
 const SignUp = () => {
   return (
-    <div>
+    <div className={styles.formContainer}>
       <NavBar />
+      <div className={styles.circle + " " + styles.large}></div>
+      <div className={styles.circle + " " + styles.medium}></div>
+      <div className={styles.circle + " " + styles.small}></div>
+      <div className={styles.circle + " " + styles.xsmall}></div>
       <div className={styles.heading}> Sign Up</div>
 
       <div className={styles.formCard}>
