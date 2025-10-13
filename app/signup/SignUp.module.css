@@ -1,0 +1,75 @@
+.formCard {
+  max-width: 600px;
+  margin: 5vh auto;
+  padding: 2rem 2.5rem;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+:global(.dark-theme) .formCard {
+  background: var(--dark-card);
+  color: var(--text-color);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
+}
+
+.heading {
+  max-width: 600px;
+  margin: 5vh auto;
+  padding: 2rem 2.5rem;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 1.2rem;
+}
+
+:global(.dark-theme) .heading {
+  background: #181818;
+  color: #fafafa;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
+}
+
+.formCard input:focus,
+.formCard .form-control:focus {
+  border-color: #3346ff;
+  outline: none;
+}
+
+:global(.dark-theme) .formCard input,
+:global(.dark-theme) .formCard .form-control {
+  background: #23252b;
+  color: #e1e1e1;
+  border: 1.5px solid #353755;
+}
+
+.formCard .btn {
+  width: 100%;
+  padding: 0.94rem 0;
+  font-size: 1.13rem;
+  background: var(--accent-blue);
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  transition: background 0.21s;
+}
+
+.formCard .btn:hover,
+.formCard .btn:focus {
+  background: #1c5fd0;
+}
+
+.formCard input::placeholder,
+.formCard .form-control::placeholder {
+  color: #92929d;
+}
+
+:global(.dark-theme) .formCard input::placeholder,
+:global(.dark-theme) .formCard .form-control::placeholder {
+  color: #d7d7eb;
+}

@@ -25,7 +25,7 @@ function NavBar() {
       } sticky-top ${styles["navbar-text-size"]}`}
       expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#welcome">
+        <Navbar.Brand href="/">
           <img
             src={
               theme === "dark"

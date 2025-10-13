@@ -1,9 +1,8 @@
 .container {
   position: relative;
-  overflow-y: scroll;
-  overflow-x: hidden;
   height: 93vh;
   background-color: var(--background);
+  overflow: hidden;
 }
 
 .title {

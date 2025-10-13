@@ -9,7 +9,8 @@
 }
 
 :global(.dark-theme) .card {
-  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
+  background: var(--dark-card);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
   color: var(--text-color);
 }
 
