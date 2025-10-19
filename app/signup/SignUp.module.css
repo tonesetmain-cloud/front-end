@@ -171,3 +171,7 @@
   background: radial-gradient(circle, #e4edfe 70%, #ffffff00 120%);
   opacity: 0.6;
 }
+
+.passwordCriteriaHeader {
+  font-size: x-small;
+}
