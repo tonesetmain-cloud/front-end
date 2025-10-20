@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import NavBar from "@/components/navbar/Navbar";
 import Button from "react-bootstrap/Button";
@@ -12,9 +13,8 @@ import "react-phone-input-2/lib/style.css";
 import Row from "react-bootstrap/Row";
 
 const SignUp = () => {
+  const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_LOCAL_URL;
-
-  console.log("Base URL:", baseUrl);
 
   const [data, setData] = useState({
     email: "",
@@ -52,13 +52,17 @@ const SignUp = () => {
         `${baseUrl}3002/auth/register`,
         payload
       );
-      console.log("Server response:", response.data);
+      if (response.data.status == "success") {
+        const token = response.data.token;
+        if (typeof window !== "undefined") {
+          localStorage.setItem("authToken", token);
+        }
+        router.push("/canva");
+      }
     } catch (error: unknown) {
       console.error("Error registering user:", error);
       alert("Registration failed. Please try again.");
     }
-
-    console.log("Form Data:", data);
   };
 
   return (
