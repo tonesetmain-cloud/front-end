@@ -19,7 +19,7 @@ const WithAuth = ({ children }: WithAuthProps) => {
         return;
       }
 
-      const baseUrl = process.env.NEXT_PUBLIC_BACKEND_LOCAL_URL;
+      const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
       try {
         const response = await axios.get(`${baseUrl}3002/auth/protected`, {
           headers: {

@@ -10,7 +10,7 @@ import styles from "../signup/SignUp.module.css";
 
 const SignIn = () => {
   const router = useRouter();
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_LOCAL_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   const [data, setData] = useState({
     email: "",
