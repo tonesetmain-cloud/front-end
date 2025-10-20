@@ -53,11 +53,12 @@ const SignUp = () => {
         payload
       );
       if (response.data.status == "success") {
-        const token = response.data.token;
+        const token = response.data.data.token;
+
         if (typeof window !== "undefined") {
           localStorage.setItem("authToken", token);
         }
-        router.push("/canva");
+        router.push("/questions");
       }
     } catch (error: unknown) {
       console.error("Error registering user:", error);
