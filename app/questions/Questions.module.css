@@ -1,0 +1,174 @@
+.formCard {
+  max-width: 75vw;
+  font-size: 2.7vh;
+  margin: 5vh auto 10vh auto;
+  padding: 2rem 2.5rem;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding-bottom: 20vh;
+  /* Custom scrollbar */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #888 #f0f0f0; /* Thumb color, track color (Firefox) */
+}
+
+/* Chrome, Edge, Safari */
+.formCard::-webkit-scrollbar {
+  width: 6px; /* width of vertical scrollbar */
+  height: 6px; /* height of horizontal scrollbar */
+}
+
+.formCard::-webkit-scrollbar-track {
+  background: #f0f0f0; /* track color */
+  border-radius: 10px;
+}
+
+.formCard::-webkit-scrollbar-thumb {
+  background-color: #888; /* scrollbar thumb color */
+  border-radius: 10px;
+  border: 2px solid #f0f0f0; /* padding around thumb */
+}
+
+.formCard::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+:global(.dark-theme) .formCard {
+  color: var(--text-color);
+}
+
+.heading {
+  position: relative;
+  max-width: 600px;
+  margin: 5vh auto;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  font-size: 3.9vh;
+  border-radius: 18px;
+  font-weight: 500;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading span {
+  position: relative;
+  background: #fff; /* matches card background */
+  padding: 0 1rem; /* space around text */
+  z-index: 2;
+}
+
+/* left line */
+.heading::before,
+.heading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 2px; /* thickness */
+  background: #000;
+  width: calc(50% - 190px);
+  filter: drop-shadow(0 0 8px #000); /* glow */
+}
+
+/* left line */
+.heading::before {
+  left: 0;
+}
+
+/* right line */
+.heading::after {
+  right: 0;
+}
+
+/* Dark theme */
+:global(.dark-theme) .heading span {
+  background: #181818; /* dark card bg */
+}
+
+:global(.dark-theme) .heading::before,
+:global(.dark-theme) .heading::after {
+  background: #fff;
+}
+
+:global(.dark-theme) .heading {
+  color: #fafafa;
+}
+
+.formCard input:focus,
+.formCard .form-control:focus {
+  border-color: #3346ff;
+  outline: none;
+}
+
+:global(.dark-theme) .formCard input,
+:global(.dark-theme) .formCard .form-control {
+  background: #23252b;
+  color: #e1e1e1;
+  border: 1.5px solid #353755;
+  z-index: 100;
+}
+
+.formCard .btn {
+  width: 100%;
+  padding: 0.94rem 0;
+  font-size: 1.13rem;
+  background: var(--accent-blue);
+  border: none;
+  border-radius: 7px;
+  color: #fff;
+  transition: background 0.21s;
+}
+
+.formCard .btn:hover,
+.formCard .btn:focus {
+  background: #1c5fd0;
+}
+
+.formCard input::placeholder,
+.formCard .form-control::placeholder {
+  color: #92929d;
+}
+
+:global(.dark-theme) .formCard input::placeholder,
+:global(.dark-theme) .formCard .form-control::placeholder {
+  color: #d7d7eb;
+}
+
+:global(.formCard select),
+:global(.formCard select option) {
+  background: #fff; /* normal mode */
+  color: #000;
+  border: 1.5px solid #ccc;
+  border-radius: 7px;
+  padding: 0.5rem;
+}
+
+:global(.dark-theme) .formCard select,
+:global(.dark-theme) .formCard select option {
+  background: #23252b;
+  color: #e1e1e1;
+  border: 1.5px solid #353755;
+}
+
+:global(.formCard select:focus) {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+:global(.dark-theme) .formCard select:focus {
+  border-color: #1c5fd0;
+}
+
+:global(.formCard select option::placeholder) {
+  color: #92929d;
+}
+
+:global(.dark-theme) .formCard select option::placeholder {
+  color: #d7d7eb;
+}
+
+.formGroup {
+  margin-bottom: 2rem !important;
+}
