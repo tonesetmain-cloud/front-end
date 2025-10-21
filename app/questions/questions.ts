@@ -1,30 +1,30 @@
 export const onboardingQuestionsSelect = [
   {
     "How would you describe your brand’s style?": [
-      "modern",
-      "minimal",
-      "classic",
-      "bold",
-      "playful",
-      "elegant",
-      "rustic",
+      "Modern",
+      "Minimal",
+      "Classic",
+      "Bold",
+      "Playful",
+      "Elegant",
+      "Rustic",
     ],
   },
   {
     "What emotion do you want your brand to evoke?": [
-      "trust",
-      "creativity",
-      "energy",
-      "luxury",
-      "calm",
-      "excitement",
+      "Trust",
+      "Creativity",
+      "Energy",
+      "Luxury",
+      "Calm",
+      "Excitement",
     ],
   },
   {
     "Would you like a light, dark, or both color themes?": [
-      "light",
-      "dark",
-      "both",
+      "Light",
+      "Dark",
+      "Both",
     ],
   },
 ];

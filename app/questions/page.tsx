@@ -3,6 +3,8 @@ import WithAuth from "@/components/WithAuth";
 import styles from "./Questions.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
+
 import {
   onboardingQuestionsSelect,
   onboardingQuestionsTextFormat,
@@ -43,16 +45,12 @@ const QuestionsPage = () => {
                     controlId={`select-${index}`}
                     className={`mb-3 ${styles.formGroup}`}>
                     <Form.Label>{key}</Form.Label>
-                    <Form.Select aria-label={key} size="lg" required>
-                      <option value="">Open this select menu</option>
-                      {(question as selectionQuestion)[key]?.map(
-                        (option: string, index: number) => (
-                          <option key={index} value={option}>
-                            {option}
-                          </option>
-                        )
-                      )}
-                    </Form.Select>
+
+                    {(question as selectionQuestion)[key]?.map(
+                      (option: string, index: number) => (
+                        <Form.Check label={option} name={option} />
+                      )
+                    )}
                   </Form.Group>
                 );
               }
