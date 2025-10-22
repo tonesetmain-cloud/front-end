@@ -136,8 +136,8 @@
   color: #d7d7eb;
 }
 
-:global(.formCard select),
-:global(.formCard select option) {
+.formCard :global(select),
+.formCard :global(select option) {
   background: #fff; /* normal mode */
   color: #000;
   border: 1.5px solid #ccc;
@@ -145,27 +145,30 @@
   padding: 0.5rem;
 }
 
-:global(.dark-theme) .formCard select,
-:global(.dark-theme) .formCard select option {
+/* Dark theme */
+:global(.dark-theme) .formCard :global(select),
+:global(.dark-theme) .formCard :global(select option) {
   background: #23252b;
   color: #e1e1e1;
   border: 1.5px solid #353755;
 }
 
-:global(.formCard select:focus) {
+/* Focus state */
+.formCard :global(select:focus) {
   outline: none;
   border-color: var(--accent-blue);
 }
 
-:global(.dark-theme) .formCard select:focus {
+:global(.dark-theme) .formCard :global(select:focus) {
   border-color: #1c5fd0;
 }
 
-:global(.formCard select option::placeholder) {
+/* Placeholder styles (for select options) */
+.formCard :global(select option::placeholder) {
   color: #92929d;
 }
 
-:global(.dark-theme) .formCard select option::placeholder {
+:global(.dark-theme) .formCard :global(select option::placeholder) {
   color: #d7d7eb;
 }
 
