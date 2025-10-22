@@ -37,9 +37,8 @@ const SignIn = () => {
       email: data.email,
       password: data.password,
     };
-
-    console.log("Submitting sign-in with payload:", payload);
-
+    console.log("dhsjkhwakdjshjbasdjk");
+    console.log("baseURL", baseUrl);
     try {
       const response = await axios.post(`${baseUrl}3002/auth/login`, payload);
 
