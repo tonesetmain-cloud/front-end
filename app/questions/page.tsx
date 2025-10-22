@@ -4,11 +4,11 @@ import WithAuth from "@/components/WithAuth";
 import styles from "./Questions.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Dropdown from "react-bootstrap/Dropdown";
 
 import {
   onboardingQuestionsSelect,
   onboardingQuestionsTextFormat,
+  questionKeyMap,
 } from "./questions";
 import NavBar from "@/components/navbar/Navbar";
 
@@ -56,12 +56,23 @@ const QuestionsPage = () => {
       return;
     }
 
-    console.log("submitted info:", information);
+    const formattedData: Record<string, any> = {};
+
+    Object.entries(information).forEach(([question, answer]) => {
+      const backendKey = questionKeyMap[question];
+      if (backendKey) {
+        formattedData[backendKey] = Array.isArray(answer)
+          ? answer.join(", ")
+          : answer;
+      }
+    });
+
+    console.log("submitted info:", formattedData);
   };
 
   return (
     <>
-      <NavBar />
+      <NavBar flag={true} />
       <div className={styles.container}>
         <h1 className={styles.heading}>Business Questions</h1>
         <div className={styles.formCard}>

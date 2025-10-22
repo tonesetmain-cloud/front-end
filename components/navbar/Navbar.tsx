@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -9,7 +10,11 @@ import { useTheme } from "../../context/ThemeContext";
 
 import { useRouter } from "next/navigation";
 
-function NavBar() {
+type props = {
+  flag?: boolean;
+};
+
+const NavBar: React.FC<props> = ({ flag }) => {
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
 
@@ -53,17 +58,21 @@ function NavBar() {
             </NavDropdown>
             {/* this is antest of the hero in the  */}
           </Nav>
+          {!flag && (
+            <>
+              <button
+                className={styles["sign-up"]}
+                onClick={() => router.push("/signup")}>
+                Sign Up
+              </button>
+              <button
+                className={styles["sign-in"]}
+                onClick={() => router.push("/signin")}>
+                Sign In
+              </button>
+            </>
+          )}
 
-          <button
-            className={styles["sign-up"]}
-            onClick={() => router.push("/signup")}>
-            Sign Up
-          </button>
-          <button
-            className={styles["sign-in"]}
-            onClick={() => router.push("/signin")}>
-            Sign In
-          </button>
           <input
             type="checkbox"
             className={styles["theme-checkbox"]}
@@ -74,6 +83,6 @@ function NavBar() {
       </Container>
     </Navbar>
   );
-}
+};
 
 export default NavBar;
