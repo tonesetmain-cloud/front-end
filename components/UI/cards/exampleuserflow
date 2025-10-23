@@ -1,0 +1,97 @@
+[Landing Page]
+|
+|--Click "Shop Now"--> [Collections Page]
+| |
+| |--Click Product--> [Product Detail Page]
+| | |
+| | |--Add to Cart--> [Cart Page]
+| | | |
+| | | |--Click Checkout--> [Checkout Page]
+| | | | |
+| | | | |--Payment Success--> [Confirmation Page]
+| | | | | |
+| | | | | |--Post-purchase flow
+| | | | |
+| | | |--Payment Fail--> [Show Error, retry]
+| |
+| |--Add to Wishlist/Save--> [Account Dashboard]
+|
+|--Click "Sign In"--> [Sign In Page]
+| |
+| |--Success--> [Account Dashboard]
+| |--Fail--> [Show Error]
+|
+|--Click "Sign Up"--> [Sign Up Page / Onboarding Questions]
+|
+|--Complete--> [Account Dashboard]
+
+[Collections Page]
+|
+|--Filter by Category/Color/Mood/Price--> [Filtered Collection Grid]
+|
+|--Click Product--> [Product Detail Page] (see above)
+
+[Product Detail Page]
+|
+|--Add to Cart--> [Cart Page] (see above)
+|
+|--Continue Shopping--> [Collections Page]
+
+[Cart Page]
+|
+|--Edit Quantity/Remove Items--> [Update Cart]
+|--Checkout--> [Checkout Page]
+|--Continue Shopping--> [Collections Page]
+
+[Checkout Page]
+|
+|--Sign In / Guest
+|--Enter Shipping Info
+|--Enter Payment Info
+|--Review & Confirm
+|
+|--Payment Success--> [Confirmation Page]
+|--Payment Fail--> [Show Error]
+
+[Confirmation Page]
+|
+|--Continue Shopping--> [Collections Page]
+|--Track Order--> [Account Dashboard]
+
+[Account Dashboard]
+|
+|--View Order History
+|--Reorder Items
+|--Manage Wishlist
+|--Edit Profile
+|--Toggle Dark/Light Theme
+
+[Sustainability Page]
+|
+|--Learn More About Fabrics
+|--Offset Order Option
+
+[Blog / Community Page]
+|
+|--Read Articles
+|--Subscribe to Newsletter
+|--Upload Reviews / Photos
+
+for:
+{
+
+"business_name": "ColorVibe ",
+"business_type": "E-commerce",
+"target_audience": "Millennials interested in fashion",
+"brand_personality": "Trendy and youthful",
+"brand_style": "Modern",
+"brand_emotion": "Excitement and confidence",
+"preferred_colors": "Red, Black, White",
+"color_theme": "Both light and dark",
+"core_values": "Sustainability, Individuality",
+"branding_purpose": "Attract new customers and build brand loyalty",
+"admired_competitors": "Glossier, Warby Parker",
+"geographic_influences": "Urban U.S. cities",
+"wants_secondary_colors": true,
+"differentiate_competitor_colors": "Avoid Blue and Yellow"
+}
