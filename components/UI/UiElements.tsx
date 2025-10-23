@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styles from "./UiElements.module.css";
+import UserFlow from "./cards/UserFlow";
 
 const fontsStaticData = {
   h1: {
@@ -83,7 +84,7 @@ const UiElements = () => {
               <Fonts fonts={fontsStaticData} />
             </Col>
             <Col>
-              <h1>whdkj</h1>
+              <UserFlow />
             </Col>
           </Row>
         </Container>
