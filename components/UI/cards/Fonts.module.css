@@ -5,8 +5,8 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 26px;
   transition: transform 0.2s, box-shadow 0.2s;
-  max-width: 350px;
-  min-width: 340px;
+  max-width: 300px;
+  min-width: 300px;
 }
 
 :global(.dark-theme) .card {

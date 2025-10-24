@@ -1,0 +1,64 @@
+{
+  "Landing Page": {
+    "actions": {
+      "Shop Now": "Collections Page",
+      "Sign In": "Sign In Page",
+      "Sign Up": "Sign Up Page / Onboarding Questions"
+    }
+  },
+  "Collections Page": {
+    "actions": {
+      "Click Product": "Product Detail Page",
+      "Filter by": "Filtered Collection Grid",
+      "Add to Wishlist/Save": "Account Dashboard"
+    }
+  },
+  "Product Detail Page": {
+    "actions": {
+      "Add to Cart": "Cart Page",
+      "Continue Shopping": "Collections Page"
+    }
+  },
+  "Cart Page": {
+    "actions": {
+      "Edit Quantity/Remove Items": "Update Cart",
+      "Checkout": "Checkout Page",
+      "Continue Shopping": "Collections Page"
+    }
+  },
+  "Checkout Page": {
+    "actions": {
+      "Payment Success": "Confirmation Page",
+      "Payment Fail": "Error (Retry)",
+      "Guest Checkout": "Confirmation Page"
+    }
+  },
+  "Confirmation Page": {
+    "actions": {
+      "Continue Shopping": "Collections Page",
+      "Track Order": "Account Dashboard"
+    }
+  },
+  "Account Dashboard": {
+    "actions": {
+      "View Order History": null,
+      "Reorder Items": null,
+      "Manage Wishlist": null,
+      "Edit Profile": null,
+      "Toggle Theme": null
+    }
+  },
+  "Sustainability Page": {
+    "actions": {
+      "Learn About Fabrics": null,
+      "Offset Order Option": null
+    }
+  },
+  "Blog / Community Page": {
+    "actions": {
+      "Read Articles": null,
+      "Subscribe to Newsletter": null,
+      "Upload Reviews / Photos": null
+    }
+  }
+}

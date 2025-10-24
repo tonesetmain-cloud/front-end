@@ -62,10 +62,10 @@ const fontsStaticData = {
 const UiElements = () => {
   return (
     <div>
-      <div className="d-flex justify-content-center">
-        <Container>
-          <Row>
-            <Col>
+      <div className={`d-flex justify-content-center ${styles.uiElementsPage}`}>
+        <Container fluid>
+          <Row className={`justify-content-center g-5 ${styles.uiContainer}`}>
+            <Col xs="auto">
               <ColorPalette
                 colors={["#FF3B30", "#E53935", "#8B0000", "#1C1C1C", "#3A3A3A"]}
                 title=" Color Palette for Light Theme"
@@ -79,10 +79,10 @@ const UiElements = () => {
                 title="Accent Color Palette"
               />
             </Col>
-            <Col>
+            <Col xs="auto">
               <Fonts fonts={fontsStaticData} />
             </Col>
-            <Col>
+            <Col xs>
               <UserFlow />
             </Col>
           </Row>

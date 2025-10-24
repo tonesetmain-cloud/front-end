@@ -5,12 +5,74 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 26px;
   transition: transform 0.2s, box-shadow 0.2s;
-  max-width: 650px;
-  min-width: 550px;
+
+  height: 700px;
+  background: #ffffff;
 }
 
 :global(.dark-theme) .card {
   background: var(--dark-card);
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
   color: var(--text-color);
+}
+
+.flowContainer {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.MacButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  background-color: #939393;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.redButton,
+.greenButton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.redButton {
+  background-color: #ff5f56;
+}
+
+.greenButton {
+  background-color: #27c93f;
+}
+
+.card.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 900px;
+  height: 90vh;
+  z-index: 9999;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.overlayWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.pageBlur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.2); /* dim the background a bit */
+  z-index: 9998; /* behind the card */
 }
