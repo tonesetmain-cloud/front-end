@@ -43,21 +43,26 @@ const NavBar: React.FC<props> = ({ flag }) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#welcome">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#yet-to-come">
-                Yet To Come Features
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#pricing">Pricing</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-            {/* this is antest of the hero in the  */}
-          </Nav>
+          {flag == false ? (
+            <Nav className="me-auto">
+              <Nav.Link href="#welcome">Home</Nav.Link>
+              <Nav.Link href="#features">Features</Nav.Link>
+              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#yet-to-come">
+                  Yet To Come Features
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#pricing">Pricing</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">
+                  Separated link
+                </NavDropdown.Item>
+              </NavDropdown>
+              {/* this is antest of the hero in the  */}
+            </Nav>
+          ) : (
+            <Nav className="me-auto"> </Nav>
+          )}
+
           {!flag && (
             <>
               <button

@@ -21,16 +21,6 @@
   color: aliceblue;
 }
 
-/* :global(.navbar) {
-  min-height: 48px !important;
-  padding: 0.3rem 0rem !important;
-}
-
-:global(.navbar-brand) {
-  min-height: 48px !important;
-  padding: 0.3rem 0rem !important;
-} */
-
 .theme-checkbox {
   --toggle-size: 8px;
   cursor: pointer;
@@ -43,6 +33,7 @@
   transition: 0.4s;
   border-radius: 99em;
   position: relative;
+
   font-size: var(--toggle-size);
 }
 
