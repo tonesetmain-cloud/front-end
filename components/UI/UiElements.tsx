@@ -62,7 +62,6 @@ const fontsStaticData = {
 const UiElements = () => {
   return (
     <div>
-      <h1>UI</h1>
       <div className="d-flex justify-content-center">
         <Container>
           <Row>

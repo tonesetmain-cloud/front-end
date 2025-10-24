@@ -22,7 +22,7 @@ const ColorPalette: React.FC<props> = ({ colors, title }) => {
 
   return (
     <div className={styles.card}>
-      <h5>{title}</h5>
+      <h6>{title}</h6>
       {colors.map((color, index) => (
         <div key={index} className={styles.colorRow}>
           <div

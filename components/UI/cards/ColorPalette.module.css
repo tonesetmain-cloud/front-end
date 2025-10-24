@@ -6,7 +6,6 @@
   padding: 26px;
   transition: transform 0.2s, box-shadow 0.2s;
   max-width: 350px;
-
   min-width: 340px;
   margin-bottom: 2.5rem;
 }
@@ -18,10 +17,11 @@
 }
 
 .color {
-  height: 30px;
+  height: 4vh;
   width: 100%;
   cursor: pointer;
 }
+
 .colorRow {
   display: flex;
   gap: 0.25rem;
