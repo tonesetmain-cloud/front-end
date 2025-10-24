@@ -27,9 +27,26 @@
   display: flex;
   gap: 8px;
   margin-bottom: 10px;
-  background-color: #939393;
-  padding: 12px;
-  border-radius: 6px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px); /* gives a soft translucent look */
+  background-color: rgba(148, 148, 148, 0.15); /* light mode */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Dark theme adjustments */
+:global(.dark-theme) .MacButtons {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Optional hover effect for buttons inside */
+.MacButtons button:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
 }
 
 .redButton,
@@ -51,8 +68,9 @@
 
 .card.fullscreen {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 900px;
   height: 90vh;
   z-index: 9999;

@@ -5,7 +5,6 @@ type props = {
   fonts: {
     [key: string]: {
       fontFamily: string;
-      fontStyle: string;
       fontWeight: string;
       fontSize: string;
       lineHeight: string;

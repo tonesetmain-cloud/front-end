@@ -16,67 +16,6 @@ import dagre from "dagre";
 import "reactflow/dist/style.css";
 import styles from "./UserFlow.module.css";
 
-// Base data
-const nodesData = [
-  { id: "landing", label: "Landing Page", type: "input" },
-  { id: "collections", label: "Collections Page" },
-  { id: "product", label: "Product Detail Page" },
-  { id: "cart", label: "Cart Page" },
-  { id: "checkout", label: "Checkout Page" },
-  { id: "confirmation", label: "Confirmation Page" },
-  { id: "signin", label: "Sign In Page" },
-  { id: "signup", label: "Sign Up Page" },
-  { id: "dashboard", label: "Account Dashboard" },
-  { id: "sustainability", label: "Sustainability Page" },
-  { id: "blog", label: "Community Page" },
-];
-
-const edgesData = [
-  { id: "e1", source: "landing", target: "collections", label: "Shop Now" },
-  {
-    id: "e2",
-    source: "collections",
-    target: "product",
-    label: "Click Product",
-  },
-  { id: "e3", source: "product", target: "cart", label: "Add to Cart" },
-  { id: "e4", source: "cart", target: "checkout", label: "Checkout" },
-  {
-    id: "e5",
-    source: "checkout",
-    target: "confirmation",
-    label: "Payment Success",
-  },
-  {
-    id: "e6",
-    source: "checkout",
-    target: "cart",
-    label: "Payment Fail (Retry)",
-  },
-  { id: "e7", source: "landing", target: "signin", label: "Sign In" },
-  { id: "e8", source: "landing", target: "signup", label: "Sign Up" },
-  { id: "e9", source: "signin", target: "dashboard", label: "Success" },
-  {
-    id: "e10",
-    source: "signup",
-    target: "dashboard",
-    label: "Complete Onboarding",
-  },
-  {
-    id: "e11",
-    source: "landing",
-    target: "sustainability",
-    label: "Learn More",
-  },
-  { id: "e12", source: "landing", target: "blog", label: "Community" },
-  {
-    id: "e13",
-    source: "confirmation",
-    target: "dashboard",
-    label: "Track Order",
-  },
-];
-
 const getLayoutedElements = (
   nodes: Node[],
   edges: Edge[],
@@ -110,7 +49,12 @@ const getLayoutedElements = (
   return { nodes, edges };
 };
 
-const UserFlow: React.FC = () => {
+type props = {
+  nodesData: { id: string; label: string; type?: string }[];
+  edgesData: { id: string; source: string; target: string; label: string }[];
+};
+
+const UserFlow: React.FC<props> = ({ nodesData, edgesData }) => {
   const initialNodes: Node[] = useMemo(
     () =>
       nodesData.map((n) => ({
