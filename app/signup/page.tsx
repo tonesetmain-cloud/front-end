@@ -193,6 +193,13 @@ const SignUp = () => {
               onChange={handleChange}
             />
           </Form.Group>
+          {/* <Button
+            variant="outline-danger"
+            onClick={() =>
+              (window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}3002/auth/google`)
+            }>
+            Continue with Google
+          </Button> */}
 
           <Button variant="primary" className={styles.btn} type="submit">
             Submit
