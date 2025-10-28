@@ -6,33 +6,67 @@ import UiElements from "@/components/UI/UiElements";
 import styles from "./Canva.module.css";
 import axios from "axios";
 
-const links = [
-  { labelFull: "Project 1", labelShort: "P1", href: "/canva" },
-  { labelFull: "Project 2", labelShort: "P2", href: "/canva" },
-  { labelFull: "Project 3", labelShort: "P3", href: "/canva" },
-];
+export type projects = {
+  id?: string;
+  user_id: string;
+  business_name: string;
+  business_type: string;
+  target_audience: string;
+  brand_personality: string;
+  brand_style: string;
+  brand_emotion: string;
+  preferred_colors: string;
+  color_theme: string;
+  core_values: string;
+  branding_purpose: string;
+  admired_competitors: string;
+  geographic_influences: string;
+  wants_secondary_colors: boolean;
+  differentiate_competitor_colors: string;
+};
 
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [projects, setProjects] = useState<projects[]>([]);
+  const [selectedId, setselectedId] = useState<string>("");
 
   useEffect(() => {
-    const fetchDetails = async () => {
+    const fetchBusinessDetails = async () => {
       try {
+        const token =
+          typeof window !== "undefined"
+            ? localStorage.getItem("authToken")
+            : null;
+        if (!token) {
+          console.error("No auth token found");
+          return;
+        }
+
         const response = await axios.get(
-          `${baseUrl}3003/business/get-all-business-details`
+          `${baseUrl}3003/business/get-all-business-details`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
-        if (response.data.status === "success") {
-          console.log("Data:", response.data);
+        if (response.data.status == "success") {
+          setProjects(response.data.data);
         }
       } catch (error) {
         console.error("Error getting details:", error);
         alert("Error in getting details");
       }
     };
-    fetchDetails();
+
+    fetchBusinessDetails();
   }, []);
+
+  const handleClick = (id: string) => {
+    setselectedId(id);
+  };
 
   return (
     <div className={styles.container}>
@@ -42,14 +76,14 @@ const CanvaPage = () => {
           ☰
         </button>
         <nav className={styles.links}>
-          {links.map((link) => (
-            <a key={link.labelFull} href={link.href}>
-              {open ? link.labelFull : link.labelShort}
-            </a>
+          {projects.map((project, i) => (
+            <p key={project.id} onClick={() => handleClick(project.id!)}>
+              {open ? project.business_name : `P${i + 1}`}
+            </p>
           ))}
         </nav>
       </div>
-      <UiElements />
+      <UiElements id={selectedId} />
     </div>
   );
 };
