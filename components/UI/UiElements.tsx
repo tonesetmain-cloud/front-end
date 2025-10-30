@@ -114,9 +114,10 @@ const edgesData = [
 
 type props = {
   id: string;
+  version: number;
 };
 
-const UiElements: React.FC<props> = ({ id }) => {
+const UiElements: React.FC<props> = ({ id, version }) => {
   return (
     <div>
       <div className={`d-flex justify-content-center ${styles.uiElementsPage}`}>

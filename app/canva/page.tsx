@@ -5,31 +5,17 @@ import WithAuth from "@/components/WithAuth";
 import UiElements from "@/components/UI/UiElements";
 import styles from "./Canva.module.css";
 import axios from "axios";
+import { projects, UIElementsAttributes } from "@/types/types";
 
-export type projects = {
-  id?: string;
-  user_id: string;
-  business_name: string;
-  business_type: string;
-  target_audience: string;
-  brand_personality: string;
-  brand_style: string;
-  brand_emotion: string;
-  preferred_colors: string;
-  color_theme: string;
-  core_values: string;
-  branding_purpose: string;
-  admired_competitors: string;
-  geographic_influences: string;
-  wants_secondary_colors: boolean;
-  differentiate_competitor_colors: string;
-};
+import Dropdown from "react-bootstrap/Dropdown";
 
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const [open, setOpen] = useState<boolean>(false);
   const [projects, setProjects] = useState<projects[]>([]);
   const [selectedId, setselectedId] = useState<string>("");
+  const [version, setVersion] = useState<number>(1);
+  const [versions, setVersions] = useState<UIElementsAttributes[]>();
 
   useEffect(() => {
     const fetchBusinessDetails = async () => {
@@ -61,6 +47,35 @@ const CanvaPage = () => {
       }
     };
 
+    const fetchVersions = async () => {
+      try {
+        const token =
+          typeof window !== "undefined"
+            ? localStorage.getItem("authToken")
+            : null;
+        if (!token) {
+          console.error("No auth token found");
+          return;
+        }
+
+        const response = await axios.get(
+          `${baseUrl}3003/business/get-ui-details-by-id/${selectedId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.data.status == "success") {
+          setProjects(response.data.data);
+        }
+      } catch (error) {
+        console.error("Error getting details:", error);
+        alert("Error in getting details");
+      }
+    };
+
     fetchBusinessDetails();
   }, []);
 
@@ -71,6 +86,26 @@ const CanvaPage = () => {
   return (
     <div className={styles.container}>
       <NavBar flag={true} />
+      <div className={styles.versionScrollBar}>
+        <Dropdown>
+          <Dropdown.Toggle
+            variant={`dark`}
+            id="dropdown-basic"
+            className={styles.versionBtn}>
+            Version
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item>Action</Dropdown.Item>
+            <Dropdown.Item>Another action</Dropdown.Item>
+            <Dropdown.Item>Action</Dropdown.Item>
+            <Dropdown.Item>Another action</Dropdown.Item>
+            <Dropdown.Item>Action</Dropdown.Item>
+            <Dropdown.Item>Another action</Dropdown.Item>
+            <Dropdown.Item>Action</Dropdown.Item>
+            <Dropdown.Item>Another action</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
       <div className={`${styles.sidebar} ${open ? styles.open : ""}`}>
         <button className={styles.hamburger} onClick={() => setOpen(!open)}>
           ☰
@@ -83,7 +118,7 @@ const CanvaPage = () => {
           ))}
         </nav>
       </div>
-      <UiElements id={selectedId} />
+      <UiElements id={selectedId} version={version} />
     </div>
   );
 };

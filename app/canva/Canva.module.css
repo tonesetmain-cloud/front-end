@@ -1,11 +1,16 @@
 /* Sidebar.module.css */
+.container {
+  padding-left: 3vw;
+}
+
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   margin-top: 70px;
   bottom: 0;
-  width: 60px;
+  width: 4vw;
+  min-width: 50px;
   background: #222;
   color: #fff;
   transition: width 0.3s ease;
@@ -15,6 +20,11 @@
   align-items: center;
   z-index: 192478712370;
 }
+
+:global(.dark-theme) .sidebar {
+  background: var(--dark-card);
+}
+
 .sidebar.open {
   width: 200px;
 }
@@ -42,4 +52,16 @@
 }
 .links p:hover {
   background: #444;
+}
+
+.versionScrollBar {
+  position: fixed;
+  right: 1vw;
+  padding-top: 10px;
+  z-index: 2;
+}
+
+:global(.dark-theme) .versionBtn {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
