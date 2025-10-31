@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styles from "./UiElements.module.css";
+import { projects, UIElementsAttributes } from "@/types/types";
 import UserFlow from "./cards/UserFlow";
 
 const fontsStaticData = {
@@ -114,10 +115,16 @@ const edgesData = [
 
 type props = {
   id: string;
-  version: number;
+  version: UIElementsAttributes;
 };
 
 const UiElements: React.FC<props> = ({ id, version }) => {
+  console.log("Light Colors:", version.light_theme_colors);
+  console.log("Dark Colors:", version.dark_theme_colors);
+  console.log("Accent Colors:", version.accent_colors);
+  console.log("Fonts:", version.fonts);
+  console.log("nodesData:", version.user_flow.nodes_data);
+  console.log("edgesData:", version.user_flow.edges_data);
   return (
     <div>
       <div className={`d-flex justify-content-center ${styles.uiElementsPage}`}>
@@ -125,23 +132,26 @@ const UiElements: React.FC<props> = ({ id, version }) => {
           <Row className={`justify-content-center g-5 ${styles.uiContainer}`}>
             <Col xs="auto">
               <ColorPalette
-                colors={["#FF3B30", "#E53935", "#8B0000", "#1C1C1C", "#3A3A3A"]}
+                colors={version.light_theme_colors}
                 title=" Color Palette for Light Theme"
               />
               <ColorPalette
-                colors={["#FF6B61", "#FF6659", "#D32F2F", "#E0E0E0", "#B0B0B0"]}
+                colors={version.dark_theme_colors}
                 title=" Color Palette for Dark Theme"
               />
               <ColorPalette
-                colors={["#FFC107", "#1ABC9C", "#FF6F3C", "#3498DB", "#FF8DAA"]}
+                colors={version.accent_colors}
                 title="Accent Color Palette"
               />
             </Col>
             <Col xs="auto">
-              <Fonts fonts={fontsStaticData} />
+              <Fonts fonts={version.fonts} />
             </Col>
             <Col xs>
-              <UserFlow nodesData={nodesData} edgesData={edgesData} />
+              <UserFlow
+                nodesData={version.user_flow.nodes_data}
+                edgesData={version.user_flow.edges_data}
+              />
             </Col>
           </Row>
         </Container>

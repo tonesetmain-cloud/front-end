@@ -71,7 +71,8 @@
   top: 5%;
   left: 50%;
   transform: translateX(-50%);
-  width: 900px;
+  /* min-width: 900px; */
+  width: 80vw;
   height: 90vh;
   z-index: 9999;
   padding: 20px;

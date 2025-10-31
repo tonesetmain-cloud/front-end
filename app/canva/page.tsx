@@ -13,10 +13,11 @@ const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const [open, setOpen] = useState<boolean>(false);
   const [projects, setProjects] = useState<projects[]>([]);
-  const [selectedId, setselectedId] = useState<string>("");
-  const [version, setVersion] = useState<number>(1);
+  const [selectedId, setSelectedId] = useState<string>("");
+  const [version, setVersion] = useState<UIElementsAttributes>();
   const [versions, setVersions] = useState<UIElementsAttributes[]>();
 
+  //get all the project detaiulsof the user
   useEffect(() => {
     const fetchBusinessDetails = async () => {
       try {
@@ -40,35 +41,7 @@ const CanvaPage = () => {
 
         if (response.data.status == "success") {
           setProjects(response.data.data);
-        }
-      } catch (error) {
-        console.error("Error getting details:", error);
-        alert("Error in getting details");
-      }
-    };
-
-    const fetchVersions = async () => {
-      try {
-        const token =
-          typeof window !== "undefined"
-            ? localStorage.getItem("authToken")
-            : null;
-        if (!token) {
-          console.error("No auth token found");
-          return;
-        }
-
-        const response = await axios.get(
-          `${baseUrl}3003/business/get-ui-details-by-id/${selectedId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (response.data.status == "success") {
-          setProjects(response.data.data);
+          setSelectedId(response.data.data[0].id);
         }
       } catch (error) {
         console.error("Error getting details:", error);
@@ -79,8 +52,46 @@ const CanvaPage = () => {
     fetchBusinessDetails();
   }, []);
 
+  //get all the versions (history) of a single project by its ID
+  useEffect(() => {
+    if (!selectedId) return;
+    const fetchVersions = async () => {
+      try {
+        const token =
+          typeof window !== "undefined"
+            ? localStorage.getItem("authToken")
+            : null;
+        if (!token) {
+          console.error("No auth token found");
+          return;
+        }
+        const response = await axios.get(
+          `${baseUrl}3003/business/get-ui-details-by-id/${selectedId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.data.status == "success") {
+          setVersions(response.data.data);
+          setVersion(response.data.data[0]);
+        }
+      } catch (error) {
+        console.error("Error getting details:", error);
+        alert("Error in getting details");
+      }
+    };
+    fetchVersions();
+  }, [selectedId]);
+
   const handleClick = (id: string) => {
-    setselectedId(id);
+    setSelectedId(id);
+  };
+
+  const handleVersionClick = (version: UIElementsAttributes) => {
+    setVersion(version);
   };
 
   return (
@@ -95,14 +106,13 @@ const CanvaPage = () => {
             Version
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item>Action</Dropdown.Item>
-            <Dropdown.Item>Another action</Dropdown.Item>
-            <Dropdown.Item>Action</Dropdown.Item>
-            <Dropdown.Item>Another action</Dropdown.Item>
-            <Dropdown.Item>Action</Dropdown.Item>
-            <Dropdown.Item>Another action</Dropdown.Item>
-            <Dropdown.Item>Action</Dropdown.Item>
-            <Dropdown.Item>Another action</Dropdown.Item>
+            {versions?.map((i, key) => {
+              return (
+                <Dropdown.Item key={key} onClick={() => handleVersionClick(i)}>
+                  Version {i.version}
+                </Dropdown.Item>
+              );
+            })}
           </Dropdown.Menu>
         </Dropdown>
       </div>
@@ -118,7 +128,8 @@ const CanvaPage = () => {
           ))}
         </nav>
       </div>
-      <UiElements id={selectedId} version={version} />
+      {/* render only when version data is available */}
+      {version && <UiElements id={selectedId} version={version} />}
     </div>
   );
 };
