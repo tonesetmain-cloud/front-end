@@ -54,14 +54,25 @@ const ColorPalette: React.FC<props> = ({ colors, title }) => {
             <h6>{title}</h6>
             {colors.map((color, index) => (
               <div key={index} className={styles.colorRowMaxScreen}>
-                {[1, 0.8, 0.6, 0.4, 0.25].map((alpha) => (
-                  <div
-                    key={alpha}
-                    className={styles.colorMaxScreen}
-                    onClick={() => handleCopy(hexToRgba(color, alpha))}
-                    style={{ backgroundColor: hexToRgba(color, alpha) }}
-                  />
-                ))}
+                {[1, 0.8, 0.6, 0.4, 0.25].map((alpha) => {
+                  const rgba = hexToRgba(color, alpha);
+                  return (
+                    <div className={styles.tooltipWrapper} key={alpha}>
+                      <div
+                        className={styles.colorMaxScreen}
+                        data-color={rgba}
+                        onClick={() => handleCopy(rgba)}
+                        style={{ backgroundColor: rgba }}
+                      />
+                      <span className={styles.tooltip}>
+                        This is the reason for choosing this color. This is the
+                        reason for choosing this color. This is the reason for
+                        choosing this color. This is the reason for choosing
+                        this color {rgba}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             ))}
           </>

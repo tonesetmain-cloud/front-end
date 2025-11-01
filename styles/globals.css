@@ -37,6 +37,7 @@ h2 {
 
 .MacButtons {
   display: flex;
+  width: 100%;
   gap: 8px;
   margin-bottom: 10px;
   padding: 10px 14px;
