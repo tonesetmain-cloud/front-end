@@ -20,33 +20,53 @@ const ColorPalette: React.FC<props> = ({ colors, title }) => {
     alert(`Copied ${color} to clipboard`);
   };
 
+  const [isMaximized, setIsMaximized] = React.useState(false);
   return (
-    <div className={styles.card}>
-      <h6>{title}</h6>
-      {colors.map((color, index) => (
-        <div key={index} className={styles.colorRow}>
-          <div
-            className={styles.color}
-            onClick={() => handleCopy(hexToRgba(color, 1))}
-            style={{ backgroundColor: hexToRgba(color, 1) }}></div>
-          <div
-            className={styles.color}
-            onClick={() => handleCopy(hexToRgba(color, 0.8))}
-            style={{ backgroundColor: hexToRgba(color, 0.8) }}></div>
-          <div
-            className={styles.color}
-            onClick={() => handleCopy(hexToRgba(color, 0.6))}
-            style={{ backgroundColor: hexToRgba(color, 0.6) }}></div>
-          <div
-            className={styles.color}
-            onClick={() => handleCopy(hexToRgba(color, 0.4))}
-            style={{ backgroundColor: hexToRgba(color, 0.4) }}></div>
-          <div
-            className={styles.color}
-            onClick={() => handleCopy(hexToRgba(color, 0.25))}
-            style={{ backgroundColor: hexToRgba(color, 0.25) }}></div>
+    <div className={styles.overlayWrapper}>
+      {isMaximized && <div className={styles.pageBlur}></div>}
+      <div className={`${styles.card} ${isMaximized ? styles.fullscreen : ""}`}>
+        <div className="MacButtons">
+          <button className="redButton" onClick={() => setIsMaximized(false)} />
+          <button
+            className="greenButton"
+            onClick={() => setIsMaximized(true)}
+          />
         </div>
-      ))}
+
+        {!isMaximized ? (
+          <>
+            <h6>{title}</h6>
+            {colors.map((color, index) => (
+              <div key={index} className={styles.colorRow}>
+                {[1, 0.8, 0.6, 0.4, 0.25].map((alpha) => (
+                  <div
+                    key={alpha}
+                    className={styles.color}
+                    onClick={() => handleCopy(hexToRgba(color, alpha))}
+                    style={{ backgroundColor: hexToRgba(color, alpha) }}
+                  />
+                ))}
+              </div>
+            ))}
+          </>
+        ) : (
+          <>
+            <h6>{title}</h6>
+            {colors.map((color, index) => (
+              <div key={index} className={styles.colorRowMaxScreen}>
+                {[1, 0.8, 0.6, 0.4, 0.25].map((alpha) => (
+                  <div
+                    key={alpha}
+                    className={styles.colorMaxScreen}
+                    onClick={() => handleCopy(hexToRgba(color, alpha))}
+                    style={{ backgroundColor: hexToRgba(color, alpha) }}
+                  />
+                ))}
+              </div>
+            ))}
+          </>
+        )}
+      </div>
     </div>
   );
 };

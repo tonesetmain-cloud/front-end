@@ -34,3 +34,46 @@ body {
 h2 {
   font-size: 5vh;
 }
+
+.MacButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px); /* gives a soft translucent look */
+  background-color: rgba(148, 148, 148, 0.15); /* light mode */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Dark theme adjustments */
+.dark-theme .MacButtons {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Optional hover effect for buttons inside */
+.MacButtons button:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+.redButton,
+.greenButton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.redButton {
+  background-color: #ff5f56;
+}
+
+.greenButton {
+  background-color: #27c93f;
+}
