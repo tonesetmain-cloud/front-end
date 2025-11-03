@@ -13,8 +13,18 @@ const WithAuth = ({ children }: WithAuthProps) => {
 
   useEffect(() => {
     const verifyToken = async () => {
-      const token = localStorage.getItem("authToken");
-      if (!token) {
+      const storedData = localStorage.getItem("authToken");
+      if (!storedData) {
+        router.push("/signin");
+        return;
+      }
+
+      const { value: token, expiry } = JSON.parse(storedData);
+      const now = new Date().getTime();
+
+      // Check expiry
+      if (now > expiry) {
+        localStorage.removeItem("authToken");
         router.push("/signin");
         return;
       }

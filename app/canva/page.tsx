@@ -6,11 +6,13 @@ import UiElements from "@/components/UI/UiElements";
 import styles from "./Canva.module.css";
 import axios from "axios";
 import { projects, UIElementsAttributes } from "@/types/types";
+import { useAuthToken } from "@/hooks/useAuthToken";
 
 import Dropdown from "react-bootstrap/Dropdown";
 
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const token = useAuthToken();
   const [open, setOpen] = useState<boolean>(false);
   const [projects, setProjects] = useState<projects[]>([]);
   const [selectedId, setSelectedId] = useState<string>("");
@@ -19,17 +21,13 @@ const CanvaPage = () => {
 
   //get all the project detaiulsof the user
   useEffect(() => {
+    if (!token) return;
     const fetchBusinessDetails = async () => {
       try {
-        const token =
-          typeof window !== "undefined"
-            ? localStorage.getItem("authToken")
-            : null;
         if (!token) {
-          console.error("No auth token found");
+          console.error("No valid auth token found");
           return;
         }
-
         const response = await axios.get(
           `${baseUrl}3003/business/get-all-business-details`,
           {
@@ -50,21 +48,14 @@ const CanvaPage = () => {
     };
 
     fetchBusinessDetails();
-  }, []);
+  }, [token]);
 
   //get all the versions (history) of a single project by its ID
   useEffect(() => {
+    if (!token) return;
     if (!selectedId) return;
     const fetchVersions = async () => {
       try {
-        const token =
-          typeof window !== "undefined"
-            ? localStorage.getItem("authToken")
-            : null;
-        if (!token) {
-          console.error("No auth token found");
-          return;
-        }
         const response = await axios.get(
           `${baseUrl}3003/business/get-ui-details-by-id/${selectedId}`,
           {
@@ -84,7 +75,7 @@ const CanvaPage = () => {
       }
     };
     fetchVersions();
-  }, [selectedId]);
+  }, [token, selectedId]);
 
   const handleClick = (id: string) => {
     setSelectedId(id);

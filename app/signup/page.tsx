@@ -56,7 +56,10 @@ const SignUp = () => {
         const token = response.data.data.token;
 
         if (typeof window !== "undefined") {
-          localStorage.setItem("authToken", token);
+          const now = new Date();
+          const expiry = now.getTime() + 60 * 60 * 1000; // 1 hour
+          const tokenData = { value: token, expiry };
+          localStorage.setItem("authToken", JSON.stringify(tokenData));
         }
         router.push("/questions");
       }

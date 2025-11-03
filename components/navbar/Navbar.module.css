@@ -79,3 +79,8 @@
   margin-left: 20px;
   margin-right: 20px;
 }
+
+.userIcon {
+  margin-left: 15px;
+  cursor: pointer;
+}

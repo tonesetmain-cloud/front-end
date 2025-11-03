@@ -1,22 +1,44 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import styles from "./Navbar.module.css";
 import { useTheme } from "../../context/ThemeContext";
-
 import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { jwtDecode } from "jwt-decode";
+import { useAuthToken } from "@/hooks/useAuthToken";
 
-type props = {
+type Props = {
   flag?: boolean;
 };
+type DecodedToken = {
+  id?: string;
+  userId?: string;
+  sub?: string;
+};
 
-const NavBar: React.FC<props> = ({ flag }) => {
+const NavBar: React.FC<Props> = ({ flag }) => {
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
+  const tokenStored = useAuthToken();
+  const [userId, setuserId] = useState<string>();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("authToken");
+    if (!storedToken) return;
+    try {
+      const decoded = jwtDecode<DecodedToken>(storedToken);
+      const id = decoded.userId || decoded.id || decoded.sub;
+      if (id) setuserId(id);
+    } catch {
+      setuserId(undefined);
+    }
+  }, []);
 
   const toggleThemeFunction = () => {
     toggleTheme();
@@ -43,7 +65,7 @@ const NavBar: React.FC<props> = ({ flag }) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          {flag == false ? (
+          {flag === false ? (
             <Nav className="me-auto">
               <Nav.Link href="#welcome">Home</Nav.Link>
               <Nav.Link href="#features">Features</Nav.Link>
@@ -57,13 +79,13 @@ const NavBar: React.FC<props> = ({ flag }) => {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
-              {/* this is antest of the hero in the  */}
             </Nav>
           ) : (
-            <Nav className="me-auto"> </Nav>
+            <Nav className="me-auto" />
           )}
 
-          {!flag && (
+          {/* Show Sign In / Up only if there's no token */}
+          {!tokenStored && !flag && (
             <>
               <button
                 className={styles["sign-up"]}
@@ -84,6 +106,15 @@ const NavBar: React.FC<props> = ({ flag }) => {
             id="custom-theme-switch"
             onChange={toggleThemeFunction}
           />
+
+          {tokenStored && (
+            <FontAwesomeIcon
+              className={styles.userIcon}
+              onClick={() => router.push(`/user/${userId}`)}
+              icon={faUser}
+              size="lg"
+            />
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
