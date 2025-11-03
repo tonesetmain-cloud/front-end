@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./ColorPalette.module.css";
 
 type props = {
-  colors: string[];
+  colors: { color: string; reason: string }[];
   title: string;
 };
 const hexToRgba = (hex: string, alpha: number) => {
@@ -42,8 +42,8 @@ const ColorPalette: React.FC<props> = ({ colors, title }) => {
                   <div
                     key={alpha}
                     className={styles.color}
-                    onClick={() => handleCopy(hexToRgba(color, alpha))}
-                    style={{ backgroundColor: hexToRgba(color, alpha) }}
+                    onClick={() => handleCopy(hexToRgba(color.color, alpha))}
+                    style={{ backgroundColor: hexToRgba(color.color, alpha) }}
                   />
                 ))}
               </div>
@@ -55,7 +55,7 @@ const ColorPalette: React.FC<props> = ({ colors, title }) => {
             {colors.map((color, index) => (
               <div key={index} className={styles.colorRowMaxScreen}>
                 {[1, 0.8, 0.6, 0.4, 0.25].map((alpha) => {
-                  const rgba = hexToRgba(color, alpha);
+                  const rgba = hexToRgba(color.color, alpha);
                   return (
                     <div className={styles.tooltipWrapper} key={alpha}>
                       <div
@@ -65,10 +65,7 @@ const ColorPalette: React.FC<props> = ({ colors, title }) => {
                         style={{ backgroundColor: rgba }}
                       />
                       <span className={styles.tooltip}>
-                        This is the reason for choosing this color. This is the
-                        reason for choosing this color. This is the reason for
-                        choosing this color. This is the reason for choosing
-                        this color {rgba}
+                        {rgba} {color.reason}
                       </span>
                     </div>
                   );

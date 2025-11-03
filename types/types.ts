@@ -21,9 +21,9 @@ export type UIElementsAttributes = {
   id?: string;
   user_id?: string;
   business_details_id: string;
-  light_theme_colors: string[];
-  dark_theme_colors: string[];
-  accent_colors: string[];
+  light_theme_colors: { color: string; reason: string }[];
+  dark_theme_colors: { color: string; reason: string }[];
+  accent_colors: { color: string; reason: string }[];
   fonts: {
     h1: {
       fontFamily: string;

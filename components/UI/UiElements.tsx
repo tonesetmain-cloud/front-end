@@ -14,12 +14,6 @@ type props = {
 };
 
 const UiElements: React.FC<props> = ({ id, version }) => {
-  console.log("Light Colors:", version.light_theme_colors);
-  console.log("Dark Colors:", version.dark_theme_colors);
-  console.log("Accent Colors:", version.accent_colors);
-  console.log("Fonts:", version.fonts);
-  console.log("nodesData:", version.user_flow.nodes_data);
-  console.log("edgesData:", version.user_flow.edges_data);
   return (
     <div>
       <div className={`d-flex justify-content-center ${styles.uiElementsPage}`}>
