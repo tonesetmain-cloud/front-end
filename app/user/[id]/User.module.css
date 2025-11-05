@@ -1,0 +1,51 @@
+.userScreen {
+  height: 100vh;
+}
+.userDetails {
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.card {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 26px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  max-width: 300px;
+  min-width: 300px;
+}
+
+:global(.dark-theme) .card {
+  background: var(--dark-card);
+  box-shadow: 0 8px 32px rgba(5, 4, 4, 0.08);
+  color: var(--text-color);
+}
+
+.buttonContainer {
+  padding: 2vh 25vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonFree {
+  background-color: rgb(0, 0, 0);
+  border-radius: var(--btn-radius);
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  font-size: 1.5vh;
+}
+
+.buttonPro {
+  background-color: var(--accent-blue);
+  color: white;
+  border: none;
+  border-radius: var(--btn-radius);
+  padding: 10px 20px;
+  font-size: 2.5vh;
+  margin-left: 20px;
+}

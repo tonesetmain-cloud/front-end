@@ -10,6 +10,21 @@ import { useAuthToken } from "@/hooks/useAuthToken";
 import { useQuery } from "@tanstack/react-query";
 import Dropdown from "react-bootstrap/Dropdown";
 
+export const fetchProjects = async (token: string, baseUrl: string) => {
+  const response = await axios.get(
+    `${baseUrl}3003/business/get-all-business-details`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+
+  if (response.data.status !== "success") {
+    throw new Error("Failed to fetch projects");
+  }
+
+  return response.data.data;
+};
+
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const token = useAuthToken();
@@ -18,24 +33,14 @@ const CanvaPage = () => {
   const [version, setVersion] = useState<UIElementsAttributes>();
   const [versions, setVersions] = useState<UIElementsAttributes[]>();
 
+  //use react query to fetch business details beacuse it will cache the details. So that we wont need to refetch it again.
   const {
     data: projectsData,
     isLoading: isProjectsLoading,
     error: projectsError,
   } = useQuery<projects[], Error>({
     queryKey: ["projects", token],
-    queryFn: async () => {
-      if (!token) throw new Error("No auth token");
-      const response = await axios.get(
-        `${baseUrl}3003/business/get-all-business-details`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      if (response.data.status !== "success")
-        throw new Error("Failed to fetch projects");
-      return response.data.data;
-    },
+    queryFn: () => fetchProjects(token!, baseUrl!),
     enabled: !!token,
   });
 
