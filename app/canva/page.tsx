@@ -7,55 +7,54 @@ import styles from "./Canva.module.css";
 import axios from "axios";
 import { projects, UIElementsAttributes } from "@/types/types";
 import { useAuthToken } from "@/hooks/useAuthToken";
-
+import { useQuery } from "@tanstack/react-query";
 import Dropdown from "react-bootstrap/Dropdown";
 
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const token = useAuthToken();
   const [open, setOpen] = useState<boolean>(false);
-  const [projects, setProjects] = useState<projects[]>([]);
   const [selectedId, setSelectedId] = useState<string>("");
   const [version, setVersion] = useState<UIElementsAttributes>();
   const [versions, setVersions] = useState<UIElementsAttributes[]>();
 
-  //get all the project detaiulsof the user
+  const {
+    data: projectsData,
+    isLoading: isProjectsLoading,
+    error: projectsError,
+  } = useQuery<projects[], Error>({
+    queryKey: ["projects", token],
+    queryFn: async () => {
+      if (!token) throw new Error("No auth token");
+      const response = await axios.get(
+        `${baseUrl}3003/business/get-all-business-details`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (response.data.status !== "success")
+        throw new Error("Failed to fetch projects");
+      return response.data.data;
+    },
+    enabled: !!token,
+  });
+
   useEffect(() => {
-    if (!token) return;
-    const fetchBusinessDetails = async () => {
+    if (projectsData?.length && !selectedId) {
+      setSelectedId(projectsData[0].id ?? ""); // safe because we already checked length
+    }
+  }, [projectsData, selectedId]);
+
+  //get all the versions (history) of a single project by its ID
+  useEffect(() => {
+    if (!selectedId) return;
+    const fetchVersions = async () => {
       try {
         if (!token) {
           console.error("No valid auth token found");
           return;
         }
-        const response = await axios.get(
-          `${baseUrl}3003/business/get-all-business-details`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
 
-        if (response.data.status == "success") {
-          setProjects(response.data.data);
-          setSelectedId(response.data.data[0].id);
-        }
-      } catch (error) {
-        console.error("Error getting details:", error);
-        alert("Error in getting details");
-      }
-    };
-
-    fetchBusinessDetails();
-  }, [token]);
-
-  //get all the versions (history) of a single project by its ID
-  useEffect(() => {
-    if (!token) return;
-    if (!selectedId) return;
-    const fetchVersions = async () => {
-      try {
         const response = await axios.get(
           `${baseUrl}3003/business/get-ui-details-by-id/${selectedId}`,
           {
@@ -75,7 +74,7 @@ const CanvaPage = () => {
       }
     };
     fetchVersions();
-  }, [token, selectedId]);
+  }, [selectedId]);
 
   const handleClick = (id: string) => {
     setSelectedId(id);
@@ -112,7 +111,7 @@ const CanvaPage = () => {
           ☰
         </button>
         <nav className={styles.links}>
-          {projects.map((project, i) => (
+          {projectsData?.map((project, i) => (
             <p key={project.id} onClick={() => handleClick(project.id!)}>
               {open ? project.business_name : `P${i + 1}`}
             </p>
