@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useEffect } from "react";
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -55,7 +55,7 @@ type props = {
 };
 
 const UserFlow: React.FC<props> = ({ nodesData, edgesData }) => {
-  const initialNodes: Node[] = useMemo(
+  const initialNodes = useMemo(
     () =>
       nodesData.map((n) => ({
         id: n.id,
@@ -63,10 +63,10 @@ const UserFlow: React.FC<props> = ({ nodesData, edgesData }) => {
         position: { x: 0, y: 0 },
         type: n.type,
       })),
-    []
+    [nodesData]
   );
 
-  const initialEdges: Edge[] = useMemo(
+  const initialEdges = useMemo(
     () =>
       edgesData.map((e) => ({
         id: e.id,
@@ -74,18 +74,18 @@ const UserFlow: React.FC<props> = ({ nodesData, edgesData }) => {
         target: e.target,
         label: e.label,
         type: "smoothstep",
-        markerEnd: { type: MarkerType.ArrowClosed }, // ✅ correct type
+        markerEnd: { type: MarkerType.ArrowClosed },
       })),
-    []
+    [edgesData]
   );
 
   const { nodes: layoutedNodes, edges: layoutedEdges } = useMemo(
     () => getLayoutedElements(initialNodes, initialEdges, "TB"),
-    []
+    [initialNodes, initialEdges]
   );
 
-  const [nodes, setNodes] = React.useState(layoutedNodes);
-  const [edges, setEdges] = React.useState(layoutedEdges);
+  const [nodes, setNodes] = React.useState<Node[]>(layoutedNodes);
+  const [edges, setEdges] = React.useState<Edge[]>(layoutedEdges);
 
   const onNodesChange = useCallback(
     (changes: any) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -95,7 +95,10 @@ const UserFlow: React.FC<props> = ({ nodesData, edgesData }) => {
     (changes: any) => setEdges((eds) => applyEdgeChanges(changes, eds)),
     []
   );
-
+  useEffect(() => {
+    setNodes(layoutedNodes);
+    setEdges(layoutedEdges);
+  }, [layoutedNodes, layoutedEdges]);
   const [isMaximized, setIsMaximized] = React.useState(false);
 
   return (

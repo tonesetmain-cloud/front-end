@@ -1,8 +1,7 @@
 .uiContainer {
   display: flex;
   justify-content: center;
-
-  padding-top: 10vh;
+  padding-top: 5vh;
 }
 
 .uiElementsPage {

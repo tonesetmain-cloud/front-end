@@ -32,6 +32,7 @@ const CanvaPage = () => {
   const [selectedId, setSelectedId] = useState<string>("");
   const [version, setVersion] = useState<UIElementsAttributes>();
   const [versions, setVersions] = useState<UIElementsAttributes[]>();
+  const [screen, setScreen] = useState<string>("ui-stuff");
 
   //use react query to fetch business details beacuse it will cache the details. So that we wont need to refetch it again.
   const {
@@ -89,28 +90,53 @@ const CanvaPage = () => {
     setVersion(version);
   };
 
+  const handleScreenChange = (value: string) => {
+    setScreen(value);
+  };
   return (
     <div className={styles.container}>
       <NavBar flag={true} />
-      <div className={styles.versionScrollBar}>
-        <Dropdown>
-          <Dropdown.Toggle
-            variant={`dark`}
-            id="dropdown-basic"
-            className={styles.versionBtn}>
-            Version
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {versions?.map((i, key) => {
-              return (
-                <Dropdown.Item key={key} onClick={() => handleVersionClick(i)}>
-                  Version {i.version}
-                </Dropdown.Item>
-              );
-            })}
-          </Dropdown.Menu>
-        </Dropdown>
+      <div className={styles.topBar}>
+        <div className={styles.menuBar}>
+          <button
+            className={screen === "stack" ? styles.activeMenuItem : ""}
+            onClick={() => handleScreenChange("stack")}>
+            Tech stack
+          </button>
+          <button
+            className={screen === "ui-stuff" ? styles.activeMenuItem : ""}
+            onClick={() => handleScreenChange("ui-stuff")}>
+            UI stuff
+          </button>
+          <button
+            className={screen === "system-design" ? styles.activeMenuItem : ""}
+            onClick={() => handleScreenChange("system-design")}>
+            System design
+          </button>
+        </div>
+        {screen == "ui-stuff" && (
+          <div className={styles.versionScrollBar}>
+            <Dropdown>
+              <Dropdown.Toggle
+                variant={`dark`}
+                id="dropdown-basic"
+                className={styles.versionBtn}>
+                Version
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {versions?.map((i, key) => (
+                  <Dropdown.Item
+                    key={key}
+                    onClick={() => handleVersionClick(i)}>
+                    Version {i.version}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        )}
       </div>
+
       <div className={`${styles.sidebar} ${open ? styles.open : ""}`}>
         <button className={styles.hamburger} onClick={() => setOpen(!open)}>
           ☰
@@ -124,7 +150,11 @@ const CanvaPage = () => {
         </nav>
       </div>
       {/* render only when version data is available */}
-      {version && <UiElements id={selectedId} version={version} />}
+      <div className={styles.uiElementsContainer}>
+        {version && screen == "ui-stuff" && (
+          <UiElements id={selectedId} version={version} />
+        )}
+      </div>
     </div>
   );
 };
