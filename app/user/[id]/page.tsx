@@ -6,7 +6,7 @@ import styles from "./User.module.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import WithAuth from "@/components/WithAuth";
-import { fetchProjects } from "../../canva/page";
+import { fetchProjects } from "@/lib/fetchProjects";
 import { UserType, projects } from "@/types/types";
 import { useAuthToken } from "@/hooks/useAuthToken";
 

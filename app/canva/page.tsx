@@ -9,21 +9,7 @@ import { projects, UIElementsAttributes } from "@/types/types";
 import { useAuthToken } from "@/hooks/useAuthToken";
 import { useQuery } from "@tanstack/react-query";
 import Dropdown from "react-bootstrap/Dropdown";
-
-export const fetchProjects = async (token: string, baseUrl: string) => {
-  const response = await axios.get(
-    `${baseUrl}3003/business/get-all-business-details`,
-    {
-      headers: { Authorization: `Bearer ${token}` },
-    }
-  );
-
-  if (response.data.status !== "success") {
-    throw new Error("Failed to fetch projects");
-  }
-
-  return response.data.data;
-};
+import { fetchProjects } from "@/lib/fetchProjects";
 
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
