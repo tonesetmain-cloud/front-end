@@ -112,18 +112,19 @@ const UserFlow: React.FC<props> = ({ nodesData, edgesData }) => {
             onClick={() => setIsMaximized(true)}
           />
         </div>
-
-        <h4>User Flow </h4>
-        <div className={styles.flowContainer}>
-          <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            fitView>
-            <Controls />
-            <Background gap={16} />
-          </ReactFlow>
+        <div className={styles.cardContent}>
+          <h4>User Flow </h4>
+          <div className={styles.flowContainer}>
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              fitView>
+              <Controls />
+              <Background gap={16} />
+            </ReactFlow>
+          </div>
         </div>
       </div>
     </div>

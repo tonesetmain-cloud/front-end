@@ -1,30 +1,28 @@
 .overlayWrapper {
   position: relative;
 }
+.cardContent {
+  padding: 16px;
+}
 .card {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 16px;
   margin: 8px;
-  min-width: 220px;
+  min-width: 250px;
   max-width: 260px;
   overflow-x: auto;
   overflow-y: auto; /* allow vertical scroll */
-
   /* hide scrollbar for Chrome, Safari, Edge */
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
-
   /* hide scrollbar for Firefox */
   scrollbar-width: none;
-
   /* hide scrollbar for IE, Edge Legacy */
   -ms-overflow-style: none;
   height: 50vh;
-
   /* Optional: smoother scrolling */
   scroll-behavior: smooth;
 }
@@ -38,7 +36,6 @@
   max-width: 1200px !important;
   height: 90vh;
   align-items: center;
-  padding: 20px;
   background: #ffffff;
   box-sizing: border-box;
   overflow: auto;

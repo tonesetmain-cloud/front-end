@@ -23,7 +23,7 @@ type DecodedToken = {
   sub?: string;
 };
 
-const NavBar: React.FC<Props> = ({ flag, home }) => {
+const NavBar: React.FC<Props> = ({ flag, home = false }) => {
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
   const tokenStored = useAuthToken();
@@ -63,7 +63,7 @@ const NavBar: React.FC<Props> = ({ flag, home }) => {
       expand="lg">
       <Container
         fluid
-        className={`${home ? styles.curve : ""} ${
+        className={`${home ? styles.curve : styles.scrolled} ${
           scrolled ? styles.scrolled : ""
         }`}>
         <Navbar.Brand href="/">

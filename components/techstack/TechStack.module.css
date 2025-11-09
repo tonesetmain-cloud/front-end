@@ -5,6 +5,6 @@
   flex-wrap: wrap; /* ✅ allows cards to go below each other */
   justify-content: center; /* centers them horizontally */
   align-items: flex-start;
-  gap: 16px; /* spacing between cards */
+  gap: 5vw; /* spacing between cards */
   padding: 16px;
 }

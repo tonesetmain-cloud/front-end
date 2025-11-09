@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> = ({ title, stack }) => {
         </div>
 
         {isMaximized ? (
-          <>
+          <div className={styles.cardContent}>
             <h3 className={styles.cardTitle}>{title}</h3>
             <ul className={styles.stackList}>
               {Object.entries(stack).map(([cat, details]) => (
@@ -39,9 +39,9 @@ const Card: React.FC<CardProps> = ({ title, stack }) => {
                 </li>
               ))}
             </ul>
-          </>
+          </div>
         ) : (
-          <>
+          <div className={styles.cardContent}>
             <h3 className={styles.cardTitle}>{title}</h3>
             <ul className={styles.stackList}>
               {Object.entries(stack).map(([cat, details]) => (
@@ -56,7 +56,7 @@ const Card: React.FC<CardProps> = ({ title, stack }) => {
                 </li>
               ))}
             </ul>
-          </>
+          </div>
         )}
       </div>
     </div>

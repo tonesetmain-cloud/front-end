@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import styles from "./Welcome.module.css";
 import { useTheme } from "@/context/ThemeContext";
 import LiquidEther from "@/components/home/LiquidEther";
+import { useRouter } from "next/navigation";
+
 const Welcome = () => {
+  const router = useRouter();
   const { theme } = useTheme(); // grab the current theme
   const [scrolled, setScrolled] = useState<boolean>(false);
 
@@ -15,6 +18,10 @@ const Welcome = () => {
     console.log(scrolled);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleClick = () => {
+    router.push("/canva");
+  };
 
   return (
     <div id="welcome" className={styles.container}>
@@ -60,7 +67,9 @@ const Welcome = () => {
       </div>
 
       <div className={styles.buttonContainer}>
-        <button className={styles.buttonFree}>Get Started For Free</button>
+        <button className={styles.buttonFree} onClick={handleClick}>
+          Get Started For Free
+        </button>
         <button className={styles.buttonPro}>🔥 Get Pro</button>
       </div>
     </div>

@@ -11,6 +11,8 @@ import { useQuery } from "@tanstack/react-query";
 import Dropdown from "react-bootstrap/Dropdown";
 import { fetchProjects } from "@/lib/fetchProjects";
 import TechStack from "@/components/techstack/TechStack";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFolder } from "@fortawesome/free-solid-svg-icons";
 
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -124,14 +126,21 @@ const CanvaPage = () => {
         )}
       </div>
 
-      <div className={`${styles.sidebar} ${open ? styles.open : ""}`}>
-        <button className={styles.hamburger} onClick={() => setOpen(!open)}>
-          ☰
-        </button>
+      <div
+        className={`${styles.sidebar} ${open ? styles.open : ""}`}
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}>
         <nav className={styles.links}>
           {projectsData?.map((project, i) => (
             <p key={project.id} onClick={() => handleClick(project.id!)}>
-              {open ? project.business_name : `P${i + 1}`}
+              {open ? (
+                project.business_name
+              ) : (
+                <>
+                  <FontAwesomeIcon icon={faFolder} style={{ marginRight: 4 }} />
+                  {i + 1}
+                </>
+              )}
             </p>
           ))}
         </nav>

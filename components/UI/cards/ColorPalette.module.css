@@ -17,11 +17,14 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 26px;
   transition: transform 0.2s, box-shadow 0.2s;
   max-width: 300px;
   min-width: 300px;
   margin-bottom: 2.5rem;
+}
+
+.cardContent {
+  padding: 26px;
 }
 
 /* Fullscreen card */
@@ -34,7 +37,6 @@
   max-width: 1200px !important;
   height: 90vh;
   align-items: center;
-  padding: 20px;
   background: #ffffff;
   box-sizing: border-box;
   overflow: auto;

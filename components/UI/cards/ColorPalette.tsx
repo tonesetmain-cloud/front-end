@@ -34,7 +34,7 @@ const ColorPalette: React.FC<props> = ({ colors, title }) => {
         </div>
 
         {!isMaximized ? (
-          <>
+          <div className={styles.cardContent}>
             <h5>{title}</h5>
             {colors.map((color, index) => (
               <div key={index} className={styles.colorRow}>
@@ -48,9 +48,9 @@ const ColorPalette: React.FC<props> = ({ colors, title }) => {
                 ))}
               </div>
             ))}
-          </>
+          </div>
         ) : (
-          <>
+          <div className={styles.cardContent}>
             <h3>{title}</h3>
             {colors.map((color, index) => (
               <div key={index} className={styles.colorRowMaxScreen}>
@@ -72,7 +72,7 @@ const ColorPalette: React.FC<props> = ({ colors, title }) => {
                 })}
               </div>
             ))}
-          </>
+          </div>
         )}
       </div>
     </div>

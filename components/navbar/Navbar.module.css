@@ -40,9 +40,9 @@
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-.nonCurve {
+/* .nonCurve {
   background: var(--background);
-}
+} */
 
 .navbar-text-size {
   font-size: 1.8vh;
