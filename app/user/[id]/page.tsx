@@ -15,7 +15,7 @@ const User = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const token = useAuthToken();
   const [user, setUser] = useState<UserType>();
-  const [projects, setProjects] = useState<projects[]>([]);
+
 
   const {
     data: projectsData,

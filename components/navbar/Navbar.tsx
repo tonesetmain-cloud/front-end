@@ -15,6 +15,7 @@ import { useAuthToken } from "@/hooks/useAuthToken";
 
 type Props = {
   flag?: boolean;
+  home?: boolean;
 };
 type DecodedToken = {
   id?: string;
@@ -22,11 +23,20 @@ type DecodedToken = {
   sub?: string;
 };
 
-const NavBar: React.FC<Props> = ({ flag }) => {
+const NavBar: React.FC<Props> = ({ flag, home }) => {
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
   const tokenStored = useAuthToken();
   const [userId, setuserId] = useState<string>();
+  const [scrolled, setScrolled] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 55);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
@@ -47,11 +57,15 @@ const NavBar: React.FC<Props> = ({ flag }) => {
 
   return (
     <Navbar
-      className={`${
-        theme === "dark" ? "navbar-dark bg-dark" : "navbar-light bg-light"
-      } sticky-top ${styles["navbar-text-size"]}`}
+      className={`sticky-top ${styles["navbar-text-size"]} ${
+        home ? "" : styles.nonCurve
+      } `}
       expand="lg">
-      <Container fluid>
+      <Container
+        fluid
+        className={`${home ? styles.curve : ""} ${
+          scrolled ? styles.scrolled : ""
+        }`}>
         <Navbar.Brand href="/">
           <img
             src={

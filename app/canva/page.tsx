@@ -10,6 +10,7 @@ import { useAuthToken } from "@/hooks/useAuthToken";
 import { useQuery } from "@tanstack/react-query";
 import Dropdown from "react-bootstrap/Dropdown";
 import { fetchProjects } from "@/lib/fetchProjects";
+import TechStack from "@/components/techstack/TechStack";
 
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -140,6 +141,8 @@ const CanvaPage = () => {
         {version && screen == "ui-stuff" && (
           <UiElements id={selectedId} version={version} />
         )}
+        {screen == "stack" && <TechStack id={selectedId} />}
+        {screen == "system-design" && <h1>system-design</h1>}
       </div>
     </div>
   );

@@ -1,0 +1,10 @@
+.techStackPage {
+  padding: 0 3vw;
+  overflow-x: hidden;
+  display: flex;
+  flex-wrap: wrap; /* ✅ allows cards to go below each other */
+  justify-content: center; /* centers them horizontally */
+  align-items: flex-start;
+  gap: 16px; /* spacing between cards */
+  padding: 16px;
+}

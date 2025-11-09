@@ -34,26 +34,106 @@ body {
 h2 {
   font-size: 5vh;
 }
-
 .MacButtons {
+  position: sticky;
+  top: 0;
   display: flex;
-  width: 100%;
+  align-items: center;
   gap: 8px;
+  height: 40px !important;
+  padding: 12px 18px;
+  width: 100%;
   margin-bottom: 10px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  backdrop-filter: blur(10px); /* gives a soft translucent look */
-  background-color: rgba(148, 148, 148, 0.15); /* light mode */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: background-color 0.3s ease, border 0.3s ease;
+  border-radius: 14px;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Moving fluid shapes under the glass */
+.MacButtons::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(255, 255, 255, 0.25),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(100, 200, 255, 0.2),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 150, 250, 0.15),
+      transparent 70%
+    );
+  mix-blend-mode: overlay;
+  filter: blur(40px);
+  animation: liquidGlassMove 12s infinite ease-in-out;
+  transform: scale(1.4);
+  opacity: 0.9;
+  z-index: -1;
+}
+
+/* Extra soft highlight motion */
+.MacButtons::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.2),
+    transparent 70%
+  );
+  filter: blur(60px);
+  mix-blend-mode: soft-light;
+  animation: glassPulse 9s infinite alternate ease-in-out;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+@keyframes liquidGlassMove {
+  0% {
+    transform: translate(0%, 0%) scale(1.3);
+  }
+  33% {
+    transform: translate(-3%, 3%) scale(1.4);
+  }
+  66% {
+    transform: translate(4%, -2%) scale(1.35);
+  }
+  100% {
+    transform: translate(0%, 0%) scale(1.3);
+  }
+}
+
+@keyframes glassPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
 }
 
 /* Dark theme adjustments */
 .dark-theme .MacButtons {
   background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Optional hover effect for buttons inside */
@@ -77,4 +157,12 @@ h2 {
 
 .greenButton {
   background-color: #27c93f;
+}
+
+.liquid-ether-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
 }
