@@ -1,0 +1,23 @@
+.systemDesignPage {
+  padding-left: 35px;
+  display: flex;
+  background-color: #f5f7fa; /* soft background */
+}
+
+.objects {
+  background-color: #e3e9ef; /* light gray-blue panel */
+  width: 15vw;
+  height: 80vh;
+  border-radius: 8px;
+}
+
+.editField {
+  background-color: #1e1f25; /* dark editor area */
+  flex: 1;
+  height: 80vh;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-radius: 8px;
+  color: #f5f5f5; /* readable text color */
+  padding: 16px;
+}

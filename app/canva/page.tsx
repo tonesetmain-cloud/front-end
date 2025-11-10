@@ -13,6 +13,7 @@ import { fetchProjects } from "@/lib/fetchProjects";
 import TechStack from "@/components/techstack/TechStack";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
+import SystemDesign from "@/components/systemDesign/SystemDesign";
 
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -151,7 +152,7 @@ const CanvaPage = () => {
           <UiElements id={selectedId} version={version} />
         )}
         {screen == "stack" && <TechStack id={selectedId} />}
-        {screen == "system-design" && <h1>system-design</h1>}
+        {screen == "system-design" && <SystemDesign id={selectedId} />}
       </div>
     </div>
   );
