@@ -1,9 +1,9 @@
 export const BestPracticeTechStack: Record<string, any> = {
   // BACKEND
   backend: {
-    "Programming Lang": {
+    "Programming language": {
       name: "TypeScript (Node.js)",
-      estimatedCostPerMonth: "$0 (open-source)",
+      estimatedCostPerMonth: "$0 ",
       reason:
         "Strong typing, large ecosystem, and easy integration with modern frameworks.",
       docs: "https://www.typescriptlang.org/",
@@ -105,7 +105,7 @@ export const BestPracticeTechStack: Record<string, any> = {
 
   // FRONTEND
   frontend: {
-    "Programming Lang": {
+    "Programming language": {
       name: "TypeScript",
       estimatedCostPerMonth: "$0",
       reason: "Improves maintainability and prevents runtime errors.",
@@ -155,7 +155,7 @@ export const BestPracticeTechStack: Record<string, any> = {
 
   // MOBILE
   mobile: {
-    "Programming Lang": {
+    "Programming language": {
       name: "TypeScript",
       estimatedCostPerMonth: "$0",
       reason: "Cross-platform shared code between web and mobile.",

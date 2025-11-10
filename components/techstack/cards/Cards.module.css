@@ -9,8 +9,8 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin: 8px;
-  min-width: 250px;
-  max-width: 260px;
+  min-width: 320px;
+  max-width: 320px;
   overflow-x: auto;
   overflow-y: auto; /* allow vertical scroll */
   /* hide scrollbar for Chrome, Safari, Edge */
@@ -32,7 +32,7 @@
   top: 5%;
   left: 50%;
   transform: translateX(-50%);
-  width: 80vw !important;
+  width: 50vw !important;
   max-width: 1200px !important;
   height: 90vh;
   align-items: center;
@@ -55,6 +55,7 @@
   background: rgba(0, 0, 0, 0.2);
   z-index: 9000;
 }
+
 .cardTitle {
   font-size: 1.2rem;
   margin-bottom: 12px;
@@ -62,12 +63,41 @@
 
 .stackList {
   list-style-type: none;
-  padding: 0;
+  padding-left: 0; /* remove default ul padding */
   margin: 0;
 }
+.stackList li {
+  padding-bottom: 8px; /* space before the line */
+  margin-bottom: 8px; /* space after the line */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* subtle line */
+}
+.detailsBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgb(34 44 69 / 0.05);
+}
 
-.stackItem {
-  padding: 4px 0;
-  font-size: 1rem;
-  color: #555;
+.detailsBox .name {
+  flex-grow: 1;
+  color: var(--para);
+}
+
+.detailsBox .price {
+  background-color: transparent;
+  border: 1.5px solid #22c55e; /* accent green */
+  border-radius: 16px;
+  padding: 2px 14px;
+  color: #22c55e;
+  font-size: 14px;
+  margin-left: 16px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.headingWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -22,17 +22,21 @@ const Card: React.FC<CardProps> = ({ title, stack }) => {
 
         {isMaximized ? (
           <div className={styles.cardContent}>
-            <h3 className={styles.cardTitle}>{title}</h3>
+            <div className={styles.headingWrapper}>
+              <h3 className={styles.cardTitle}>{title}</h3>
+            </div>
             <ul className={styles.stackList}>
               {Object.entries(stack).map(([cat, details]) => (
                 <li key={cat}>
-                  <p>
-                    <b>Name:</b> {details.name}
-                  </p>
-                  <p>
-                    <b>Estimated Cost Per Month:</b>{" "}
-                    {details.estimatedCostPerMonth}
-                  </p>
+                  <h6>
+                    <b> {cat}</b>
+                  </h6>
+                  <div className={styles.detailsBox}>
+                    <p className={styles.name}>{details.name}</p>
+                    <p className={styles.price}>
+                      {details.estimatedCostPerMonth}
+                    </p>
+                  </div>
                   {details.reason && <p>{details.reason}</p>}
                   {details.docs && <p>{details.docs}</p>}
                   {details.alternatives && <p>{details.alternatives}</p>}
@@ -42,17 +46,21 @@ const Card: React.FC<CardProps> = ({ title, stack }) => {
           </div>
         ) : (
           <div className={styles.cardContent}>
-            <h3 className={styles.cardTitle}>{title}</h3>
+            <div className={styles.headingWrapper}>
+              <h3 className={styles.cardTitle}>{title}</h3>
+            </div>
             <ul className={styles.stackList}>
               {Object.entries(stack).map(([cat, details]) => (
                 <li key={cat}>
-                  <p>
-                    <b>Name:</b> {details.name}
-                  </p>
-                  <p>
-                    <b>Estimated Cost Per Month:</b>{" "}
-                    {details.estimatedCostPerMonth}
-                  </p>
+                  <h6>
+                    <b> {cat}</b>
+                  </h6>
+                  <div className={styles.detailsBox}>
+                    <p className={styles.name}>{details.name}</p>
+                    <p className={styles.price}>
+                      {details.estimatedCostPerMonth}
+                    </p>
+                  </div>
                 </li>
               ))}
             </ul>
