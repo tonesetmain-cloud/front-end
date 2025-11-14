@@ -12,7 +12,7 @@ const SignIn = () => {
   const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
 
-  console.log("Auth URL:", process.env.baseUrl);
+  console.log("Auth URL:", baseUrl);
 
   const [data, setData] = useState({
     email: "",
