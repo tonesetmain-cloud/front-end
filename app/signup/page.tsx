@@ -14,7 +14,7 @@ import Row from "react-bootstrap/Row";
 
 const SignUp = () => {
   const router = useRouter();
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
 
   const [data, setData] = useState({
     email: "",
@@ -48,10 +48,7 @@ const SignUp = () => {
     };
 
     try {
-      const response = await axios.post(
-        `${baseUrl}3002/auth/register`,
-        payload
-      );
+      const response = await axios.post(`${baseUrl}/auth/register`, payload);
       if (response.data.status == "success") {
         const token = response.data.data.token;
 
@@ -196,13 +193,6 @@ const SignUp = () => {
               onChange={handleChange}
             />
           </Form.Group>
-          {/* <Button
-            variant="outline-danger"
-            onClick={() =>
-              (window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}3002/auth/google`)
-            }>
-            Continue with Google
-          </Button> */}
 
           <Button variant="primary" className={styles.btn} type="submit">
             Submit

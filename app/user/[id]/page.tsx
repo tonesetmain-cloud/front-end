@@ -12,10 +12,10 @@ import { useAuthToken } from "@/hooks/useAuthToken";
 
 const User = () => {
   const params = useParams();
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
+  const baseBusinessURL = process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS;
   const token = useAuthToken();
   const [user, setUser] = useState<UserType>();
-
 
   const {
     data: projectsData,
@@ -23,7 +23,7 @@ const User = () => {
     error,
   } = useQuery({
     queryKey: ["projects", token],
-    queryFn: () => fetchProjects(token!, baseUrl!),
+    queryFn: () => fetchProjects(token!, baseBusinessURL!),
     enabled: !!token,
   });
 
@@ -34,7 +34,7 @@ const User = () => {
       try {
         if (!token) return;
         const response = await axios.get(
-          `${baseUrl}3002/auth/get-user/${params.id}`,
+          `${baseUrl}/auth/get-user/${params.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

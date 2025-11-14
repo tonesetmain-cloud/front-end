@@ -10,7 +10,7 @@ import styles from "../signup/SignUp.module.css";
 
 const SignIn = () => {
   const router = useRouter();
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
 
   const [data, setData] = useState({
     email: "",
@@ -39,7 +39,7 @@ const SignIn = () => {
     };
 
     try {
-      const response = await axios.post(`${baseUrl}3002/auth/login`, payload);
+      const response = await axios.post(`${baseUrl}/auth/login`, payload);
 
       if (response.data.status == "error") {
         alert("Invalid credentials. Please try again.");

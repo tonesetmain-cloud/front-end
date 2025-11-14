@@ -29,9 +29,9 @@ const WithAuth = ({ children }: WithAuthProps) => {
         return;
       }
 
-      const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+      const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
       try {
-        const response = await axios.get(`${baseUrl}3002/auth/protected`, {
+        const response = await axios.get(`${baseUrl}/auth/protected`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

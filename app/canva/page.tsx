@@ -16,7 +16,7 @@ import { faFolder } from "@fortawesome/free-solid-svg-icons";
 import SystemDesign from "@/components/systemDesign/SystemDesign";
 
 const CanvaPage = () => {
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS;
   const token = useAuthToken();
   const [open, setOpen] = useState<boolean>(false);
   const [selectedId, setSelectedId] = useState<string>("");
@@ -52,7 +52,7 @@ const CanvaPage = () => {
         }
 
         const response = await axios.get(
-          `${baseUrl}3003/business/get-ui-details-by-id/${selectedId}`,
+          `${baseUrl}/business/get-ui-details-by-id/${selectedId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

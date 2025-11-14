@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const fetchProjects = async (token: string, baseUrl: string) => {
   const response = await axios.get(
-    `${baseUrl}3003/business/get-all-business-details`,
+    `${baseUrl}/business/get-all-business-details`,
     { headers: { Authorization: `Bearer ${token}` } }
   );
 
