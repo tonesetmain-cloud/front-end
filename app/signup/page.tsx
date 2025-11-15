@@ -5,16 +5,19 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import NavBar from "@/components/navbar/Navbar";
 import Button from "react-bootstrap/Button";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import Form from "react-bootstrap/Form";
 import styles from "./SignUp.module.css";
 import Col from "react-bootstrap/Col";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Row from "react-bootstrap/Row";
+import { FcGoogle } from "react-icons/fc";
 
 const SignUp = () => {
   const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
+  const [showPassword, setShowPassword] = useState(false);
 
   const [data, setData] = useState({
     email: "",
@@ -81,6 +84,7 @@ const SignUp = () => {
             <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
+              className={styles.InputField}
               placeholder="Enter email"
               name="email"
               value={data.email}
@@ -96,6 +100,7 @@ const SignUp = () => {
                 placeholder="First name"
                 name="firstName"
                 value={data.firstName}
+                className={styles.InputField}
                 onChange={handleChange}
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -107,6 +112,7 @@ const SignUp = () => {
                 type="text"
                 placeholder="Last name"
                 name="lastName"
+                className={styles.InputField}
                 value={data.lastName}
                 onChange={handleChange}
               />
@@ -130,11 +136,14 @@ const SignUp = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group
+            className="mb-3"
+            controlId="formBasicPassword"
+            style={{ position: "relative" }}>
             <Form.Label>Password</Form.Label>
             <Form.Control
+              type={showPassword ? "text" : "password"}
               required
-              type="password"
               placeholder="Password"
               name="password"
               value={data.password}
@@ -142,6 +151,7 @@ const SignUp = () => {
                 setData((prev) => ({ ...prev, password: e.target.value }))
               }
             />
+
             <ul
               style={{
                 listStyle: "none",
@@ -182,17 +192,30 @@ const SignUp = () => {
             </ul>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formConfirmPassword">
+          <Form.Group
+            className="mb-3"
+            controlId="formConfirmPassword"
+            style={{ position: "relative" }}>
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               required
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Confirm Password"
               name="confirmPassword"
               value={data.confirmPassword}
               onChange={handleChange}
             />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className={styles.eyeLogo}>
+              {showPassword ? <FiEyeOff /> : <FiEye />}
+            </span>
           </Form.Group>
+
+          <button className={styles.googleBtn} type="button">
+            <FcGoogle size={22} />
+            Sign up with Google
+          </button>
 
           <Button variant="primary" className={styles.btn} type="submit">
             Submit

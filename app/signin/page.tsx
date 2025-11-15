@@ -5,12 +5,15 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import NavBar from "@/components/navbar/Navbar";
 import Button from "react-bootstrap/Button";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import Form from "react-bootstrap/Form";
 import styles from "../signup/SignUp.module.css";
+import { FcGoogle } from "react-icons/fc";
 
 const SignIn = () => {
   const router = useRouter();
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
+  const [showPassword, setShowPassword] = useState(false);
 
   console.log("Auth URL:", baseUrl);
 
@@ -71,13 +74,14 @@ const SignIn = () => {
       <div className={styles.circle + " " + styles.medium}></div>
       <div className={styles.circle + " " + styles.small}></div>
       <div className={styles.circle + " " + styles.xsmall}></div>
-      <div className={styles.heading}> Sign In</div>
+      <div className={`${styles.heading} ${styles.signInHeading}`}>Sign In</div>
 
       <div className={styles.formCard}>
         <Form className={styles.form} onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
+              className={styles.InputField}
               type="email"
               placeholder="Enter email"
               name="email"
@@ -86,16 +90,32 @@ const SignIn = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group
+            className="mb-3"
+            controlId="formBasicPassword"
+            style={{ position: "relative" }}>
             <Form.Label>Password</Form.Label>
+
             <Form.Control
-              type="password"
+              className={styles.InputField}
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               name="password"
               value={data.password}
               onChange={handleChange}
             />
+
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className={styles.eyeLogo}>
+              {showPassword ? <FiEyeOff /> : <FiEye />}
+            </span>
           </Form.Group>
+
+          <button className={styles.googleBtn} type="button">
+            <FcGoogle size={22} />
+            Sign in with Google
+          </button>
 
           <Button variant="primary" className={styles.btn} type="submit">
             Submit

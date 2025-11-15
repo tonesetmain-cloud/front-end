@@ -3,12 +3,20 @@
   background-color: var(--background);
   padding-bottom: 10px;
   overflow: hidden;
+  height: 100vh;
+  position: relative;
+}
+
+.InputField {
+  background-color: var(--background);
+  opacity: 1 !important;
+
   position: relative;
 }
 
 .formCard {
   max-width: 600px;
-  margin: 5vh auto;
+  margin: 50px auto;
   margin-bottom: 200px;
   padding: 2rem 2.5rem;
   border-radius: 18px;
@@ -23,10 +31,11 @@
   color: var(--text-color);
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
 }
+
 .heading {
   position: relative;
   max-width: 600px;
-  margin: 5vh auto;
+  margin: 20px auto;
   padding: 2rem 2.5rem;
   text-align: center;
   font-size: 3.5vh;
@@ -37,6 +46,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.signInHeading {
+  margin: 15vh auto 0 auto !important;
 }
 
 .heading span {
@@ -80,7 +93,6 @@
 }
 
 :global(.dark-theme) .heading {
-  background: #181818;
   color: #fafafa;
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
 }
@@ -105,9 +117,13 @@
   font-size: 1.13rem;
   background: var(--accent-blue);
   border: none;
-  border-radius: 7px;
+  border-radius: 17px;
   color: #fff;
   transition: background 0.21s;
+}
+
+.btn:active {
+  transform: scale(0.97);
 }
 
 .formCard .btn:hover,
@@ -139,8 +155,8 @@
 .circle.large {
   width: 28vw;
   height: 50vh;
-  top: -100px;
-  right: -70px;
+  top: 100px;
+  right: 270px;
   background: radial-gradient(circle, #3c7ffb 60%, #ffffff00 120%);
   opacity: 0.45;
 }
@@ -174,4 +190,57 @@
 
 .passwordCriteriaHeader {
   font-size: x-small;
+}
+
+.eyeLogo {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-5%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #444;
+}
+
+:global(.dark-theme) .eyeLogo {
+  color: #d2d2d2;
+}
+.googleBtn {
+  width: 100%;
+  padding: 0.9rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #fff;
+  color: #444;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.googleBtn:hover {
+  border-color: #d0d0d0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.googleBtn:active {
+  transform: scale(0.97);
+}
+
+/* Dark theme */
+:global(.dark-theme) .googleBtn {
+  background: #1e1e1f;
+  border: 1.5px solid #353535;
+  color: #f0f0f0;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.04);
+}
+
+:global(.dark-theme) .googleBtn:hover {
+  border-color: #4a4a4a;
 }
