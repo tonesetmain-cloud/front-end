@@ -6,6 +6,7 @@ import styles from "./User.module.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import WithAuth from "@/components/WithAuth";
+import { Container, Row, Col } from "react-bootstrap";
 import { fetchProjects } from "@/lib/fetchProjects";
 import { UserType, projects } from "@/types/types";
 import { useAuthToken } from "@/hooks/useAuthToken";
@@ -55,10 +56,12 @@ const User = () => {
     <div className={styles.userScreen}>
       <NavBar />
       <div className={styles.userDetails}>
-        <img src="/images/user/1.jpg" alt="" />
-        <p>
-          {user?.first_name} {user?.last_name}
-        </p>
+        <div className={styles.nameContainer}>
+          <span className={styles.firstName}>{user?.first_name}</span>{" "}
+          <span className={styles.lastName}>{user?.last_name}</span>
+          <img src="/images/user/1.jpg" alt="" className={styles.profilePic} />
+        </div>
+
         <p>Email: {user?.email}</p>
         <p>Phone: {user?.phone_number}</p>
       </div>
@@ -68,16 +71,18 @@ const User = () => {
       </div>
       <div className={styles.projects}>
         <h3>Your Projects</h3>
-        {projectsData?.length > 0 ? (
-          projectsData.map((project: any) => (
-            <div className={styles.card} key={project.id}>
-              <h3>{project.business_name}</h3>
-              <p>Business Type: {project.business_type}</p>
-            </div>
-          ))
-        ) : (
-          <p>No projects available</p>
-        )}
+        <div className={styles.cardsContainer}>
+          {projectsData?.length > 0 ? (
+            projectsData.map((project: any) => (
+              <div className={styles.card} key={project.id}>
+                <h3>{project.business_name}</h3>
+                <p>Business Type: {project.business_type}</p>
+              </div>
+            ))
+          ) : (
+            <p>No projects available</p>
+          )}
+        </div>
       </div>
     </div>
   );
