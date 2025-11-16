@@ -55,6 +55,7 @@ const User = () => {
     <div className={styles.userScreen}>
       <NavBar />
       <div className={styles.userDetails}>
+        <img src="/images/user/1.jpg" alt="" />
         <p>
           {user?.first_name} {user?.last_name}
         </p>

@@ -52,7 +52,7 @@ const Pricing = () => {
         <PriceCard
           title="Pro Plan"
           price={
-            pricingPlans === "Monthly" ? "100 SEK / month" : "1100 SEK / year"
+            pricingPlans === "Monthly" ? "500 SEK / month" : "5500 SEK / year"
           }
           description="Ideal for larger teams and businesses."
           features={features.proFeatures} // array of strings
