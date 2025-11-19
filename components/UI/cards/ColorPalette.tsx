@@ -30,12 +30,12 @@ const ColorPalette: React.FC<props> = ({ colors, title }) => {
           <button
             className="greenButton"
             onClick={() => setIsMaximized(true)}
-          />
+          />{" "}
+          <p className="title">{title}</p>
         </div>
 
         {!isMaximized ? (
           <div className={styles.cardContent}>
-            <h5>{title}</h5>
             {colors.map((color, index) => (
               <div key={index} className={styles.colorRow}>
                 {[1, 0.8, 0.6, 0.4, 0.25].map((alpha) => (

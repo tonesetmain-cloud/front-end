@@ -100,6 +100,12 @@ h2 {
   z-index: -1;
 }
 
+.title {
+  position: static;
+  top: auto;
+  margin: 0;
+}
+
 @keyframes liquidGlassMove {
   0% {
     transform: translate(0%, 0%) scale(1.3);

@@ -22,11 +22,11 @@ const UiElements: React.FC<props> = ({ id, version }) => {
             <Col xs="auto">
               <ColorPalette
                 colors={version.light_theme_colors}
-                title=" Color Palette for Light Theme"
+                title="Palette for Light Theme"
               />
               <ColorPalette
                 colors={version.dark_theme_colors}
-                title=" Color Palette for Dark Theme"
+                title="Palette for Dark Theme"
               />
               <ColorPalette
                 colors={version.accent_colors}

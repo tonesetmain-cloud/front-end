@@ -8,6 +8,7 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = ({ title, stack }) => {
   const [isMaximized, setIsMaximized] = React.useState(false);
+  const [titleName, setTitleName] = React.useState("");
   return (
     <div className={styles.overlayWrapper}>
       {isMaximized && <div className={styles.pageBlur}></div>}
@@ -18,13 +19,11 @@ const Card: React.FC<CardProps> = ({ title, stack }) => {
             className="greenButton"
             onClick={() => setIsMaximized(true)}
           />
+          <p className="title">{title}</p>
         </div>
 
         {isMaximized ? (
           <div className={styles.cardContent}>
-            <div className={styles.headingWrapper}>
-              <h3 className={styles.cardTitle}>{title}</h3>
-            </div>
             <ul className={styles.stackList}>
               {Object.entries(stack).map(([cat, details]) => (
                 <li key={cat}>
@@ -46,9 +45,6 @@ const Card: React.FC<CardProps> = ({ title, stack }) => {
           </div>
         ) : (
           <div className={styles.cardContent}>
-            <div className={styles.headingWrapper}>
-              <h3 className={styles.cardTitle}>{title}</h3>
-            </div>
             <ul className={styles.stackList}>
               {Object.entries(stack).map(([cat, details]) => (
                 <li key={cat}>

@@ -9,7 +9,8 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin: 8px;
-  min-width: 320px;
+  width: 22vw;
+  min-width: 270px;
   max-width: 320px;
   overflow-x: auto;
   overflow-y: auto; /* allow vertical scroll */
@@ -90,7 +91,7 @@
   border-radius: 16px;
   padding: 2px 14px;
   color: #22c55e;
-  font-size: 14px;
+  font-size: 12px;
   margin-left: 16px;
   white-space: nowrap;
   flex-shrink: 0;
