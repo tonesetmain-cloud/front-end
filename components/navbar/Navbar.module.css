@@ -7,24 +7,6 @@
   vertical-align: top; /* equivalent to Bootstrap's align-top */
 }
 
-.curve {
-  width: 50vw !important;
-  position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 40px auto; /* center horizontally */
-  padding: 0.5em 1em;
-  background: transparent;
-  background: rgba(145, 145, 145, 0.2); /* semi-transparent white */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* soft border */
-  border-radius: 50px;
-  backdrop-filter: blur(10px); /* the glassy blur effect */
-  -webkit-backdrop-filter: blur(10px); /* for Safari */
-  transition: all 0.5s ease;
-  /* smooth hover or theme change */
-}
-
 .scrolled {
   top: -40px;
   width: 100vw;
@@ -49,8 +31,7 @@
   /* or sticky */
   width: 100%;
   z-index: 2000;
-  /* no color, just show what’s behi
-  nd */
+
   color: white; /* or appropriate contrast for text */
 }
 

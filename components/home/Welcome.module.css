@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  height: 93vh;
+  height: 80vh;
   background-color: var(--background);
 }
 .overlay {
@@ -8,7 +8,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 93vh;
+  height: 80vh;
   background: rgba(255, 255, 255, 0.5); /* dark overlay, adjust opacity */
   pointer-events: none; /* allow clicks to pass through */
   z-index: 1;
@@ -22,7 +22,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 93vh;
+  height: 70vh;
   z-index: 0; /* behind content */
 }
 
@@ -36,7 +36,7 @@
 /* rest of your styles remain the same */
 
 .title {
-  padding: 28vh 20vw 0 20vw;
+  padding: 10vh 20vw 0 20vw;
   justify-content: center;
   text-align: center;
   font-weight: 650;

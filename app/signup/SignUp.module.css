@@ -3,21 +3,18 @@
   background-color: var(--background);
   padding-bottom: 10px;
   overflow: hidden;
-
   position: relative;
 }
 
 .InputField {
   background-color: var(--background);
   opacity: 1 !important;
-
   position: relative;
 }
 
 .formCard {
   max-width: 600px;
-  margin: 50px auto;
-  margin-bottom: 200px;
+  margin: 30px auto 50px auto;
   padding: 2rem 2.5rem;
   border-radius: 18px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
@@ -35,8 +32,8 @@
 .heading {
   position: relative;
   max-width: 600px;
-  margin: 20px auto;
-  padding: 2rem 2.5rem;
+  margin: 20px auto 10px auto;
+  padding: 1rem 1rem;
   text-align: center;
   font-size: 3.5vh;
   border-radius: 18px;
@@ -49,7 +46,7 @@
 }
 
 .signInHeading {
-  margin: 15vh auto 0 auto !important;
+  margin: 10vh auto 0 auto !important;
 }
 
 .heading span {
@@ -114,7 +111,6 @@
 .formCard .btn {
   width: 100%;
   padding: 0.94rem 0;
-  font-size: 1.13rem;
   background: var(--accent-blue);
   border: none;
   border-radius: 17px;
@@ -154,9 +150,11 @@
 
 .circle.large {
   width: 28vw;
+  min-width: 50px;
+  min-height: 50px;
   height: 50vh;
-  top: 100px;
-  right: 270px;
+  top: 15vh;
+  right: 15vw;
   background: radial-gradient(circle, #3c7ffb 60%, #ffffff00 120%);
   opacity: 0.45;
 }
@@ -217,9 +215,7 @@
   border: 1.5px solid #e5e5e5;
   border-radius: 15px;
   margin-bottom: 20px;
-  font-size: 1.1rem;
   cursor: pointer;
-
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transition: all 0.2s ease;
 }
