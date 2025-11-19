@@ -111,9 +111,9 @@ const UserFlow: React.FC<props> = ({ nodesData, edgesData }) => {
             className="greenButton"
             onClick={() => setIsMaximized(true)}
           />
+          <p className="title">User Flow</p>
         </div>
         <div className={styles.cardContent}>
-          <h4>User Flow </h4>
           <div className={styles.flowContainer}>
             <ReactFlow
               nodes={nodes}
