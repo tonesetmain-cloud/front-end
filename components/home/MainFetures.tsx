@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import Card from "./cards/Card";
 import styles from "./MainFeatures.module.css";
+import { useTheme } from "../../context/ThemeContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBullseye,
@@ -12,6 +13,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const MainFeatures = () => {
+  const { theme } = useTheme();
+
   useEffect(() => {
     const elements = document.querySelectorAll(`.${styles.animateUp}`);
     const observer = new IntersectionObserver(
@@ -34,9 +37,15 @@ const MainFeatures = () => {
 
       <div className={styles.twoColumn}>
         {/* LEFT - Sticky Image */}
-        <div className={styles.left}>
-          <img src="/images/features/mainFeatures.png" alt="" />
-        </div>
+        {theme === "dark" ? (
+          <div className={styles.left}>
+            <img src="/images/features/mainFeaturesDark.png" alt="" />
+          </div>
+        ) : (
+          <div className={styles.left}>
+            <img src="/images/features/mainFeatures.png" alt="" />
+          </div>
+        )}
 
         {/* RIGHT - Cards */}
         <div className={styles.right + " " + styles.container}>

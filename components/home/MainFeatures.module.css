@@ -92,7 +92,12 @@
 .YTFright img {
   width: 80%;
   height: auto;
+
   border-radius: 12px;
+}
+
+:global(.dark-theme) .YTFright img {
+  opacity: 0.7;
 }
 
 .YTFright {

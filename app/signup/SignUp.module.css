@@ -13,7 +13,7 @@
 }
 
 .formCard {
-  max-width: 600px;
+  max-width: 500px;
   margin: 30px auto 50px auto;
   padding: 2rem 2.5rem;
   border-radius: 18px;
@@ -31,7 +31,7 @@
 
 .heading {
   position: relative;
-  max-width: 600px;
+  max-width: 500px;
   margin: 20px auto 10px auto;
   padding: 1rem 1rem;
   text-align: center;
@@ -106,6 +106,15 @@
   color: #e1e1e1;
   border: 1.5px solid #353755;
   z-index: 100;
+}
+
+.formCard label {
+  font-size: 0.85rem;
+}
+
+.formCard input,
+.formCard .form-control {
+  font-size: 0.9rem;
 }
 
 .formCard .btn {
