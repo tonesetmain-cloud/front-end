@@ -54,9 +54,7 @@ const CanvaPage = () => {
         const response = await axios.get(
           `${baseUrl}/business/get-ui-details-by-id/${selectedId}`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            withCredentials: true,
           }
         );
 

@@ -13,6 +13,8 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Row from "react-bootstrap/Row";
 import { FcGoogle } from "react-icons/fc";
+import { createAuthClient } from "better-auth/react";
+const authClient = createAuthClient();
 
 const SignUp = () => {
   const router = useRouter();
@@ -51,7 +53,9 @@ const SignUp = () => {
     };
 
     try {
-      const response = await axios.post(`${baseUrl}/auth/register`, payload);
+      const response = await axios.post(`${baseUrl}/auth/register`, payload, {
+        withCredentials: true,
+      });
       if (response.data.status == "success") {
         const token = response.data.data.token;
 
@@ -67,6 +71,16 @@ const SignUp = () => {
       console.error("Error registering user:", error);
       alert("Registration failed. Please try again.");
     }
+  };
+
+  const handleGoogleSignIn = async () => {
+    console.log("Google Sign-In initiated");
+    const data = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+
+    console.log("Google Sign-In data:", data);
   };
 
   return (
@@ -212,7 +226,10 @@ const SignUp = () => {
             </span>
           </Form.Group>
 
-          <button className={styles.googleBtn} type="button">
+          <button
+            className={styles.googleBtn}
+            type="button"
+            onClick={handleGoogleSignIn}>
             <FcGoogle size={22} />
             Sign up with Google
           </button>

@@ -37,9 +37,7 @@ const User = () => {
         const response = await axios.get(
           `${baseUrl}/auth/get-user/${params.id}`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            withCredentials: true,
           }
         );
         if (response.data.status == "success") {

@@ -15,8 +15,6 @@ const SignIn = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
   const [showPassword, setShowPassword] = useState(false);
 
-  console.log("Auth URL:", baseUrl);
-
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -44,21 +42,17 @@ const SignIn = () => {
     };
 
     try {
-      const response = await axios.post(`${baseUrl}/auth/login`, payload);
+      const response = await axios.post(`${baseUrl}/auth/login`, payload, {
+        withCredentials: true,
+      });
+
+      console.log("Sign In response:", response.data);
 
       if (response.data.status == "error") {
         alert("Invalid credentials. Please try again.");
         return;
       }
       if (response.data.status == "success") {
-        const token = response.data.data.token;
-
-        if (typeof window !== "undefined") {
-          const now = new Date();
-          const expiry = now.getTime() + 60 * 60 * 1000; // 1 hour
-          const tokenData = { value: token, expiry };
-          localStorage.setItem("authToken", JSON.stringify(tokenData));
-        }
         router.push("/canva");
       }
     } catch (error: unknown) {
