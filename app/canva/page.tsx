@@ -6,7 +6,6 @@ import UiElements from "@/components/UI/UiElements";
 import styles from "./Canva.module.css";
 import axios from "axios";
 import { projects, UIElementsAttributes } from "@/types/types";
-import { useAuthToken } from "@/hooks/useAuthToken";
 import { useQuery } from "@tanstack/react-query";
 import Dropdown from "react-bootstrap/Dropdown";
 import { fetchProjects } from "@/lib/fetchProjects";
@@ -14,15 +13,24 @@ import TechStack from "@/components/techstack/TechStack";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
 import SystemDesign from "@/components/systemDesign/SystemDesign";
+import { fetchUserId } from "@/lib/fetchUserId";
 
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS;
-  const token = useAuthToken();
+
   const [open, setOpen] = useState<boolean>(false);
   const [selectedId, setSelectedId] = useState<string>("");
   const [version, setVersion] = useState<UIElementsAttributes>();
   const [versions, setVersions] = useState<UIElementsAttributes[]>();
   const [screen, setScreen] = useState<string>("ui-stuff");
+  const {
+    data: userIdData,
+    isLoading: userIdLoading,
+    error: userIdError,
+  } = useQuery<string, Error>({
+    queryKey: ["user"],
+    queryFn: () => fetchUserId(baseUrl!),
+  });
 
   //use react query to fetch business details beacuse it will cache the details. So that we wont need to refetch it again.
   const {
@@ -30,9 +38,8 @@ const CanvaPage = () => {
     isLoading: isProjectsLoading,
     error: projectsError,
   } = useQuery<projects[], Error>({
-    queryKey: ["projects", token],
-    queryFn: () => fetchProjects(token!, baseUrl!),
-    enabled: !!token,
+    queryKey: ["projects", userIdData],
+    queryFn: () => fetchProjects(baseUrl!),
   });
 
   useEffect(() => {
@@ -46,11 +53,6 @@ const CanvaPage = () => {
     if (!selectedId) return;
     const fetchVersions = async () => {
       try {
-        if (!token) {
-          console.error("No valid auth token found");
-          return;
-        }
-
         const response = await axios.get(
           `${baseUrl}/business/get-ui-details-by-id/${selectedId}`,
           {

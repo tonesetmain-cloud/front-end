@@ -6,34 +6,37 @@ import styles from "./User.module.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import WithAuth from "@/components/WithAuth";
-import { Container, Row, Col } from "react-bootstrap";
 import { fetchProjects } from "@/lib/fetchProjects";
 import { UserType, projects } from "@/types/types";
-import { useAuthToken } from "@/hooks/useAuthToken";
+import { fetchUserId } from "@/lib/fetchUserId";
 
 const User = () => {
   const params = useParams();
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
   const baseBusinessURL = process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS;
-  const token = useAuthToken();
   const [user, setUser] = useState<UserType>();
+
+  const {
+    data: userIdData,
+    isLoading: userIdLoading,
+    error: userIdError,
+  } = useQuery<string, Error>({
+    queryKey: ["user"],
+    queryFn: () => fetchUserId(baseUrl!),
+  });
 
   const {
     data: projectsData,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["projects", token],
-    queryFn: () => fetchProjects(token!, baseBusinessURL!),
-    enabled: !!token,
+    queryKey: ["projects", userIdData],
+    queryFn: () => fetchProjects(baseBusinessURL!),
   });
 
   useEffect(() => {
-    if (!token) return;
-
     const fetchUser = async () => {
       try {
-        if (!token) return;
         const response = await axios.get(
           `${baseUrl}/auth/get-user/${params.id}`,
           {
@@ -48,7 +51,7 @@ const User = () => {
       }
     };
     fetchUser();
-  }, [token, params]);
+  }, [params]);
 
   return (
     <div className={styles.userScreen}>

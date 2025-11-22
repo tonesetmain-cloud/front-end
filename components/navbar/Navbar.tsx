@@ -9,25 +9,20 @@ import styles from "./Navbar.module.css";
 import { useTheme } from "../../context/ThemeContext";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { jwtDecode } from "jwt-decode";
-import { useAuthToken } from "@/hooks/useAuthToken";
+import { useQuery } from "@tanstack/react-query";
+import { fetchUserId } from "@/lib/fetchUserId";
 
 type Props = {
   flag?: boolean;
   home?: boolean;
 };
-type DecodedToken = {
-  id?: string;
-  userId?: string;
-  sub?: string;
-};
 
 const NavBar: React.FC<Props> = ({ flag, home = false }) => {
+  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
-  const tokenStored = useAuthToken();
-  const [userId, setuserId] = useState<string>();
   const [scrolled, setScrolled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -38,17 +33,14 @@ const NavBar: React.FC<Props> = ({ flag, home = false }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
-    if (!storedToken) return;
-    try {
-      const decoded = jwtDecode<DecodedToken>(storedToken);
-      const id = decoded.userId || decoded.id || decoded.sub;
-      if (id) setuserId(id);
-    } catch {
-      setuserId(undefined);
-    }
-  }, []);
+  const {
+    data: userIdData,
+    isLoading: userIdLoading,
+    error: userIdError,
+  } = useQuery<string, Error>({
+    queryKey: ["user"],
+    queryFn: () => fetchUserId(baseUrl!),
+  });
 
   const toggleThemeFunction = () => {
     toggleTheme();
@@ -66,7 +58,10 @@ const NavBar: React.FC<Props> = ({ flag, home = false }) => {
         className={`${home ? styles.curve : styles.scrolled} ${
           scrolled ? styles.scrolled : ""
         }`}>
-        <Navbar.Brand href="/">
+        <Navbar.Brand
+          role="button"
+          onClick={() => router.push("/")}
+          style={{ cursor: "pointer" }}>
           <img
             src={
               theme === "dark"
@@ -77,6 +72,7 @@ const NavBar: React.FC<Props> = ({ flag, home = false }) => {
             alt="Tone Set Logo"
           />
         </Navbar.Brand>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           {flag === false ? (
@@ -99,7 +95,7 @@ const NavBar: React.FC<Props> = ({ flag, home = false }) => {
           )}
 
           {/* Show Sign In / Up only if there's no token */}
-          {!tokenStored && !flag && (
+          {!flag && !userIdData && (
             <>
               <button
                 className={styles["sign-up"]}
@@ -121,10 +117,10 @@ const NavBar: React.FC<Props> = ({ flag, home = false }) => {
             onChange={toggleThemeFunction}
           />
 
-          {tokenStored && (
+          {userIdData && (
             <FontAwesomeIcon
               className={styles.userIcon}
-              onClick={() => router.push(`/user/${userId}`)}
+              onClick={() => router.push(`/user/${userIdData}`)}
               icon={faUser}
               size="lg"
             />
