@@ -71,7 +71,7 @@
 }
 
 .left img {
-  width: 100%;
+  width: 80%;
   height: auto;
   border-radius: 12px;
 }
@@ -90,9 +90,8 @@
   gap: 40px;
 }
 .YTFright img {
-  width: 80%;
+  width: 60%;
   height: auto;
-
   border-radius: 12px;
 }
 

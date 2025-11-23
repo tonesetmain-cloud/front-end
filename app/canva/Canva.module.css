@@ -58,6 +58,7 @@
 }
 .links p:hover {
   background: #444;
+  border-radius: 20px;
 }
 
 .menuBar {
