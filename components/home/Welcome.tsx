@@ -3,11 +3,14 @@ import React, { useEffect, useState } from "react";
 import styles from "./Welcome.module.css";
 import { useTheme } from "@/context/ThemeContext";
 import LiquidEther from "@/components/home/LiquidEther";
+import { useQuery } from "@tanstack/react-query";
+import { fetchUserId } from "@/lib/fetchUserId";
 import { useRouter } from "next/navigation";
 
 const Welcome = () => {
   const router = useRouter();
   const { theme } = useTheme(); // grab the current theme
+  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
   const [scrolled, setScrolled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -19,8 +22,30 @@ const Welcome = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const {
+    data: userIdData,
+    isLoading: userIdLoading,
+    error: userIdError,
+  } = useQuery<string, Error>({
+    queryKey: ["user"],
+    queryFn: () => fetchUserId(baseUrl!), // this will NOT run
+    enabled: false, // completely disable auto-fetch
+  });
+
   const handleClick = () => {
-    router.push("/canva");
+    if (userIdData) {
+      router.push("/canva");
+    } else {
+      router.push("/signin");
+    }
+  };
+
+  const handleProBtnClick = () => {
+    if (userIdData) {
+      router.push(`user/${userIdData}`);
+    } else {
+      router.push("/signin");
+    }
   };
 
   return (
@@ -70,7 +95,9 @@ const Welcome = () => {
         <button className={styles.buttonFree} onClick={handleClick}>
           Get Started For Free
         </button>
-        <button className={styles.buttonPro}>🔥 Get Pro</button>
+        <button className={styles.buttonPro} onClick={handleProBtnClick}>
+          🔥 Get Pro
+        </button>
       </div>
     </div>
   );

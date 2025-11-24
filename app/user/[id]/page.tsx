@@ -9,8 +9,12 @@ import WithAuth from "@/components/WithAuth";
 import { fetchProjects } from "@/lib/fetchProjects";
 import { UserType, projects } from "@/types/types";
 import { fetchUserId } from "@/lib/fetchUserId";
+import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 const User = () => {
+  const router = useRouter();
+  const queryClient = useQueryClient();
   const params = useParams();
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
   const baseBusinessURL = process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS;
@@ -53,6 +57,16 @@ const User = () => {
     fetchUser();
   }, [params]);
 
+  const handleLogout = async () => {
+    try {
+      await axios.get(`${baseUrl}/auth/logout`, { withCredentials: true });
+      queryClient.clear();
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className={styles.userScreen}>
       <NavBar />
@@ -67,7 +81,9 @@ const User = () => {
         <p>Phone: {user?.phone_number}</p>
       </div>
       <div className={styles.buttonContainer}>
-        <button className={styles.buttonFree}>Logout</button>
+        <button className={styles.buttonFree} onClick={handleLogout}>
+          Logout
+        </button>
         <button className={styles.buttonPro}>🔥 Get Pro</button>
       </div>
       <div className={styles.projects}>
