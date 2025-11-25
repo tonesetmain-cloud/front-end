@@ -25,40 +25,44 @@ const Card: React.FC<CardProps> = ({ title, stack }) => {
         {isMaximized ? (
           <div className={styles.cardContent}>
             <ul className={styles.stackList}>
-              {Object.entries(stack).map(([cat, details]) => (
-                <li key={cat}>
-                  <h6>
-                    <b> {cat}</b>
-                  </h6>
-                  <div className={styles.detailsBox}>
-                    <p className={styles.name}>{details.name}</p>
-                    <p className={styles.price}>
-                      {details.estimatedCostPerMonth}
-                    </p>
-                  </div>
-                  {details.reason && <p>{details.reason}</p>}
-                  {details.docs && <p>{details.docs}</p>}
-                  {details.alternatives && <p>{details.alternatives}</p>}
-                </li>
-              ))}
+              {Object.entries(stack)
+                .filter(([key]) => key !== "id" && key !== "version_id")
+                .map(([cat, details]) => (
+                  <li key={cat}>
+                    <h6>
+                      <b> {cat}</b>
+                    </h6>
+                    <div className={styles.detailsBox}>
+                      <p className={styles.name}>{details.name}</p>
+                      <p className={styles.price}>
+                        {details.estimatedCostPerMonth}
+                      </p>
+                    </div>
+                    {details.reason && <p>{details.reason}</p>}
+                    {details.docs && <p>{details.docs}</p>}
+                    {details.alternatives && <p>{details.alternatives}</p>}
+                  </li>
+                ))}
             </ul>
           </div>
         ) : (
           <div className={styles.cardContent}>
             <ul className={styles.stackList}>
-              {Object.entries(stack).map(([cat, details]) => (
-                <li key={cat}>
-                  <h6>
-                    <b> {cat}</b>
-                  </h6>
-                  <div className={styles.detailsBox}>
-                    <p className={styles.name}>{details.name}</p>
-                    <p className={styles.price}>
-                      {details.estimatedCostPerMonth}
-                    </p>
-                  </div>
-                </li>
-              ))}
+              {Object.entries(stack)
+                .filter(([key]) => key !== "id" && key !== "version_id")
+                .map(([cat, details]) => (
+                  <li key={cat}>
+                    <h6>
+                      <b> {cat}</b>
+                    </h6>
+                    <div className={styles.detailsBox}>
+                      <p className={styles.name}>{details.name}</p>
+                      <p className={styles.price}>
+                        {details.estimatedCostPerMonth}
+                      </p>
+                    </div>
+                  </li>
+                ))}
             </ul>
           </div>
         )}

@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import styles from "./canvas.module.css";
 import Dropdown from "react-bootstrap/Dropdown";
-import { UIElementsAttributes } from "@/types/types";
+import {
+  UIElementsAttributes,
+  TechStachVersionsAttributes,
+} from "@/types/types";
 
 type props = {
   uiElementsVersions: UIElementsAttributes[];
-  handleVersionClick: (version: any) => void;
+  techStackVersions: TechStachVersionsAttributes[];
+  handleUIElementVersionClick: (version: any) => void;
+  handleTechStackVersionClick: (version: any) => void;
   screen: string;
   setScreen: (value: string) => void;
 };
 
 const TopMenu: React.FC<props> = ({
   uiElementsVersions,
-  handleVersionClick,
+  techStackVersions,
+  handleUIElementVersionClick,
+  handleTechStackVersionClick,
   screen,
   setScreen,
 }) => {
@@ -49,7 +56,30 @@ const TopMenu: React.FC<props> = ({
             </Dropdown.Toggle>
             <Dropdown.Menu>
               {uiElementsVersions?.map((i, key) => (
-                <Dropdown.Item key={key} onClick={() => handleVersionClick(i)}>
+                <Dropdown.Item
+                  key={key}
+                  onClick={() => handleUIElementVersionClick(i)}>
+                  Version {i.version}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+      )}
+      {screen == "stack" && (
+        <div className={styles.versionScrollBar}>
+          <Dropdown>
+            <Dropdown.Toggle
+              variant={`dark`}
+              id="dropdown-basic"
+              className={styles.versionBtn}>
+              Version
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {techStackVersions?.map((i, key) => (
+                <Dropdown.Item
+                  key={key}
+                  onClick={() => handleTechStackVersionClick(i)}>
                   Version {i.version}
                 </Dropdown.Item>
               ))}

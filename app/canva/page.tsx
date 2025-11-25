@@ -17,6 +17,7 @@ import SystemDesign from "@/components/systemDesign/SystemDesign";
 import { fetchUserId } from "@/lib/fetchUserId";
 import Sidebar from "@/components/canvas/Sidebar";
 import TopMenu from "@/components/canvas/TopMenu";
+import { version } from "os";
 
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS;
@@ -27,6 +28,8 @@ const CanvaPage = () => {
     useState<UIElementsAttributes[]>();
   const [techStackVersion, setTechStackVersion] =
     useState<TechStachVersionsAttributes>();
+  const [techStackVersionNumber, setTechStackVersionNumber] =
+    useState<number>(1);
   const [techStackVersions, setTechStackVersions] =
     useState<TechStachVersionsAttributes[]>();
   const [screen, setScreen] = useState<string>("ui-stuff");
@@ -84,14 +87,11 @@ const CanvaPage = () => {
     if (!selectedId) return;
     const fetchData = async () => {
       try {
-        console.log("Fetching TechStack details for ID:", selectedId);
         const response = await axios.get(
           `${baseUrl}/business/get-tech-stack-all-versions/${selectedId}`,
           { withCredentials: true }
         );
         setTechStackVersions(response.data.data);
-        setTechStackVersion(response.data.data[0]);
-        console.log("TechStack Response:", response.data.data);
       } catch (error) {
         console.error("Error in TechStack component:", error);
       }
@@ -100,8 +100,34 @@ const CanvaPage = () => {
     fetchData();
   }, [selectedId]);
 
-  const handleVersionClick = (version: UIElementsAttributes) => {
+  //get the specific version detail of techstack
+  useEffect(() => {
+    if (!selectedId) return;
+    if (!techStackVersionNumber) return;
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${baseUrl}/business/get-tech-stack-by-id-and-version/${selectedId}/${techStackVersionNumber}`,
+          { withCredentials: true }
+        );
+        setTechStackVersion(response.data.data);
+      } catch (error) {
+        console.error("Error in TechStack component:", error);
+      }
+    };
+    fetchData();
+  }, [selectedId, techStackVersionNumber]);
+
+  //we are stroring whole version object into var
+  const handleUIElementVersionClick = (version: UIElementsAttributes) => {
     setuiElementsVersion(version);
+  };
+  //first we stroing version number then fetching techstack of that version number
+  // Handling the fetching of tech stack and UI elements is different because the backend structures them differently. The tech stack is stored across multiple tables, while the UI elements are stored in a single table.
+  const handleTechStackVersionClick = (
+    version: TechStachVersionsAttributes
+  ) => {
+    setTechStackVersionNumber(version.version!);
   };
 
   return (
@@ -110,7 +136,9 @@ const CanvaPage = () => {
 
       <TopMenu
         uiElementsVersions={uiElementsVersions!}
-        handleVersionClick={handleVersionClick}
+        techStackVersions={techStackVersions!}
+        handleUIElementVersionClick={handleUIElementVersionClick}
+        handleTechStackVersionClick={handleTechStackVersionClick}
         screen={screen}
         setScreen={setScreen}
       />
@@ -122,7 +150,9 @@ const CanvaPage = () => {
         {uiElementsVersion && screen == "ui-stuff" && (
           <UiElements id={selectedId} version={uiElementsVersion} />
         )}
-        {screen == "stack" && <TechStack id={selectedId} />}
+        {screen == "stack" && (
+          <TechStack id={selectedId} techStackVersion={techStackVersion} />
+        )}
         {screen == "system-design" && <SystemDesign id={selectedId} />}
       </div>
     </div>
