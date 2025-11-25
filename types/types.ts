@@ -87,3 +87,11 @@ export type UserType = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type TechStachVersionsAttributes = {
+  id?: string;
+  business_details_id: string;
+  total_cost: number;
+  version?: number;
+  notes?: string;
+};
