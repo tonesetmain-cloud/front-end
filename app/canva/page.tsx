@@ -112,7 +112,7 @@ const CanvaPage = () => {
         );
         setTechStackVersion(response.data.data);
       } catch (error) {
-        console.error("Error in TechStack component:", error);
+        console.log("Error in TechStack component:", error);
       }
     };
     fetchData();
@@ -150,7 +150,7 @@ const CanvaPage = () => {
         {uiElementsVersion && screen == "ui-stuff" && (
           <UiElements id={selectedId} version={uiElementsVersion} />
         )}
-        {screen == "stack" && (
+        {screen == "stack" && techStackVersion && (
           <TechStack id={selectedId} techStackVersion={techStackVersion} />
         )}
         {screen == "system-design" && <SystemDesign id={selectedId} />}
