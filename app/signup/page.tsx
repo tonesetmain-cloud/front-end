@@ -57,13 +57,9 @@ const SignUp = () => {
         withCredentials: true,
       });
       if (response.data.status == "success") {
-        const token = response.data.data.token;
-
         if (typeof window !== "undefined") {
           const now = new Date();
           const expiry = now.getTime() + 60 * 60 * 1000; // 1 hour
-          const tokenData = { value: token, expiry };
-          localStorage.setItem("authToken", JSON.stringify(tokenData));
         }
         router.push("/questions");
       }
@@ -74,13 +70,7 @@ const SignUp = () => {
   };
 
   const handleGoogleSignIn = async () => {
-    console.log("Google Sign-In initiated");
-    const data = await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
-
-    console.log("Google Sign-In data:", data);
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL_AUTH}/auth/google`;
   };
 
   return (
