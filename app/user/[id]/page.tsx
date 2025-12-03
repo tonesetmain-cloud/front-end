@@ -11,6 +11,9 @@ import { UserType, projects } from "@/types/types";
 import { fetchUserId } from "@/lib/fetchUserId";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import EditDetails from "@/components/profile/EditDetails";
 
 const User = () => {
   const router = useRouter();
@@ -19,6 +22,7 @@ const User = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
   const baseBusinessURL = process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS;
   const [user, setUser] = useState<UserType>();
+  const [showEdit, setShowEdit] = useState(false);
 
   const {
     data: userIdData,
@@ -67,10 +71,31 @@ const User = () => {
     }
   };
 
+  const handleEditClick = () => {
+    setShowEdit(true);
+  };
+
   return (
     <div className={styles.userScreen}>
       <NavBar />
       <div className={styles.userDetails}>
+        <div className={styles.editIcon}>
+          <FontAwesomeIcon icon={faPenToSquare} onClick={handleEditClick} />
+        </div>
+        {user && (
+          <EditDetails
+            show={showEdit}
+            setShowEdit={setShowEdit}
+            onClose={() => setShowEdit(false)}
+            user={{
+              first_name: user.first_name,
+              last_name: user.last_name,
+              email: user.email,
+              phone_number: user.phone_number,
+            }}
+          />
+        )}
+
         <div className={styles.nameContainer}>
           <span className={styles.firstName}>{user?.first_name}</span>{" "}
           <span className={styles.lastName}>{user?.last_name}</span>

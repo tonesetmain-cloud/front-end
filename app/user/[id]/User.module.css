@@ -117,3 +117,20 @@
   box-shadow: 0 8px 32px rgba(5, 4, 4, 0.08);
   color: var(--text-color);
 }
+
+.editIcon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+:global(.dark-theme) .editIcon {
+  color: #ddd;
+}
+
+.editIcon:hover {
+  opacity: 0.7;
+}

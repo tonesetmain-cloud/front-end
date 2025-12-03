@@ -55,7 +55,7 @@ const Welcome = () => {
           colors={
             theme === "dark"
               ? ["#12002f", "#1b003d", "#000000"] // dark theme colors
-              : ["#b1b1b1ff", "#fff1ffff", "#f6f6f6ff"] // light theme colors
+              : ["#b1b1b1", "#fff1ff", "#f6f6f6"] // light theme colors
           }
           mouseForce={20}
           cursorSize={100}
