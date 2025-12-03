@@ -75,6 +75,10 @@ const User = () => {
     setShowEdit(true);
   };
 
+  const goToCanvaPage = () => {
+    router.push("/canva");
+  };
+
   return (
     <div className={styles.userScreen}>
       <NavBar />
@@ -119,6 +123,10 @@ const User = () => {
               <div className={styles.card} key={project.id}>
                 <h3>{project.business_name}</h3>
                 <p>Business Type: {project.business_type}</p>
+                <button onClick={goToCanvaPage}>
+                  Go To Canva Page &gt;&gt;
+                </button>
+                <button>Details</button>
               </div>
             ))
           ) : (

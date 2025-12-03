@@ -14,14 +14,14 @@ type UserProps = {
   phone_number: string;
 };
 
-type Props = {
+type props = {
   show: boolean;
   onClose: React.Dispatch<React.SetStateAction<void>>;
   user: UserProps;
   setShowEdit: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const EditDetails = ({ show, onClose, setShowEdit, user }: Props) => {
+const EditDetails: React.FC<props> = ({ show, onClose, setShowEdit, user }) => {
   const [form, setForm] = useState<UserProps>(user);
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
 
