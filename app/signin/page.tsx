@@ -61,6 +61,10 @@ const SignIn = () => {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL_AUTH}/auth/google`;
+  };
+
   return (
     <div className={styles.formContainer}>
       <NavBar />
@@ -106,7 +110,10 @@ const SignIn = () => {
             </span>
           </Form.Group>
 
-          <button className={styles.googleBtn} type="button">
+          <button
+            className={styles.googleBtn}
+            type="button"
+            onClick={handleGoogleSignIn}>
             <FcGoogle size={22} />
             Sign in with Google
           </button>
