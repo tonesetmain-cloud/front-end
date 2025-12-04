@@ -13,7 +13,8 @@ import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
-import EditDetails from "@/components/profile/EditDetails";
+import ProjectDetails from "@/components/profile/ProjectDetails";
+import ProfileEditDetails from "@/components/profile/ProfileEditDetails";
 
 const User = () => {
   const router = useRouter();
@@ -22,7 +23,8 @@ const User = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
   const baseBusinessURL = process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS;
   const [user, setUser] = useState<UserType>();
-  const [showEdit, setShowEdit] = useState(false);
+  const [showProfileEdit, setShowProfileEdit] = useState(false);
+  const [showProjectDetails, setShowProjectDetails] = useState(false);
 
   const {
     data: userIdData,
@@ -71,26 +73,23 @@ const User = () => {
     }
   };
 
-  const handleEditClick = () => {
-    setShowEdit(true);
-  };
-
-  const goToCanvaPage = () => {
-    router.push("/canva");
-  };
-
   return (
     <div className={styles.userScreen}>
       <NavBar />
       <div className={styles.userDetails}>
         <div className={styles.editIcon}>
-          <FontAwesomeIcon icon={faPenToSquare} onClick={handleEditClick} />
+          <FontAwesomeIcon
+            icon={faPenToSquare}
+            onClick={() => {
+              setShowProfileEdit(true);
+            }}
+          />
         </div>
         {user && (
-          <EditDetails
-            show={showEdit}
-            setShowEdit={setShowEdit}
-            onClose={() => setShowEdit(false)}
+          <ProfileEditDetails
+            show={showProfileEdit}
+            setShowEdit={setShowProfileEdit}
+            onClose={() => setShowProfileEdit(false)}
             user={{
               first_name: user.first_name,
               last_name: user.last_name,
@@ -118,15 +117,32 @@ const User = () => {
       <div className={styles.projects}>
         <h3>Your Projects</h3>
         <div className={styles.cardsContainer}>
-          {projectsData?.length > 0 ? (
-            projectsData.map((project: any) => (
+          {Array.isArray(projectsData) && projectsData.length > 0 ? (
+            projectsData.map((project) => (
               <div className={styles.card} key={project.id}>
                 <h3>{project.business_name}</h3>
                 <p>Business Type: {project.business_type}</p>
-                <button onClick={goToCanvaPage}>
-                  Go To Canva Page &gt;&gt;
+                <button
+                  className={styles.redirectCanva}
+                  onClick={() => {
+                    router.push("/canva");
+                  }}>
+                  Go To Canva Page &gt;
                 </button>
-                <button>Details</button>
+                <button
+                  className={styles.projectDetailsBtn}
+                  onClick={() => {
+                    setShowProjectDetails(true);
+                  }}>
+                  Details
+                </button>
+                {user && projectsData && (
+                  <ProjectDetails
+                    project={project}
+                    show={showProjectDetails}
+                    onClose={() => setShowProjectDetails(false)}
+                  />
+                )}
               </div>
             ))
           ) : (

@@ -21,7 +21,12 @@ type props = {
   setShowEdit: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const EditDetails: React.FC<props> = ({ show, onClose, setShowEdit, user }) => {
+const ProfileEditDetails: React.FC<props> = ({
+  show,
+  onClose,
+  setShowEdit,
+  user,
+}) => {
   const [form, setForm] = useState<UserProps>(user);
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
 
@@ -116,4 +121,4 @@ const EditDetails: React.FC<props> = ({ show, onClose, setShowEdit, user }) => {
   );
 };
 
-export default EditDetails;
+export default ProfileEditDetails;
