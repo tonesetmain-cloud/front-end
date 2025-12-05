@@ -7,6 +7,7 @@ import axios from "axios";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 import styles from "./EditDetails.module.css";
+import { useQueryClient } from "@tanstack/react-query";
 
 type UserProps = {
   first_name: string;
@@ -20,6 +21,7 @@ type props = {
   onClose: React.Dispatch<React.SetStateAction<void>>;
   user: UserProps;
   setShowEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  setReload: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const ProfileEditDetails: React.FC<props> = ({
@@ -27,9 +29,11 @@ const ProfileEditDetails: React.FC<props> = ({
   onClose,
   setShowEdit,
   user,
+  setReload,
 }) => {
   const [form, setForm] = useState<UserProps>(user);
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH;
+  const queryClient = useQueryClient();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -50,8 +54,11 @@ const ProfileEditDetails: React.FC<props> = ({
       await axios.patch(`${baseUrl}/auth/edit-user`, updated, {
         withCredentials: true,
       });
-      location.reload();
+      // location.reload();
+      // setUser(updated);
       setShowEdit(false);
+      setReload((prev) => prev + 1);
+      queryClient.invalidateQueries({ queryKey: ["user"] });
     } catch (e) {
       console.log(e);
     }

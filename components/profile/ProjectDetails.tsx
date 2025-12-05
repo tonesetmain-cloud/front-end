@@ -9,6 +9,16 @@ type props = {
 };
 
 const ProjectDetails: React.FC<props> = ({ project, show, onClose }) => {
+  console.log("project details", project);
+  const filtered = Object.entries(project).filter(
+    ([key, value], i) =>
+      key !== "updatedAt" &&
+      key !== "user_id" &&
+      key !== "id" &&
+      key != "createdAt"
+  );
+  console.log("filterd array", filtered);
+
   return (
     <div>
       <Modal
@@ -20,30 +30,31 @@ const ProjectDetails: React.FC<props> = ({ project, show, onClose }) => {
           <Modal.Title>Project details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>
-            <div key={project.id}>
-              <p>Business Name: {project.business_name}</p>
-              <p>Business Type: {project.business_type}</p>
-              <p>Target Audience: {project.target_audience}</p>
-              <p>Brand Personality: {project.brand_personality}</p>
-              <p>Brand Style: {project.brand_style}</p>
-              <p>Brand Emotion: {project.brand_emotion}</p>
-              <p>Preferred Colors: {project.preferred_colors}</p>
-              <p>Color Theme: {project.color_theme}</p>
-              <p>Core Values: {project.core_values}</p>
-              <p>Branding Purpose: {project.branding_purpose}</p>
-              <p>Admired Competitors: {project.admired_competitors}</p>
-              <p>Geographic Influences: {project.geographic_influences}</p>
-              <p>
-                Wants Secondary Colors:
-                {project.wants_secondary_colors ? "Yes" : "No"}
-              </p>
-              <p>
-                Differentiate Competitor Colors:
-                {project.differentiate_competitor_colors}
-              </p>
-            </div>
-          </div>
+          <pre className={styles.Modal}>
+            &#123;
+            {filtered.map(([key, value], i) => {
+              let valueClass = styles.jsonValue;
+
+              if (typeof value === "boolean") {
+                valueClass = value
+                  ? styles.jsonBoolean
+                  : styles.jsonBooleanFalse;
+              }
+
+              return (
+                <div key={i}>
+                  <span className={styles.jsonKey}>"{key}"</span>:{" "}
+                  <span className={valueClass}>
+                    {typeof value === "string"
+                      ? `"${value}"`
+                      : value.toString()}
+                  </span>
+                  {i < Object.entries(project).length - 5 ? "," : ""}
+                </div>
+              );
+            })}
+            &#125;
+          </pre>
         </Modal.Body>
       </Modal>
     </div>

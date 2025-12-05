@@ -25,6 +25,7 @@ const User = () => {
   const [user, setUser] = useState<UserType>();
   const [showProfileEdit, setShowProfileEdit] = useState(false);
   const [showProjectDetails, setShowProjectDetails] = useState(false);
+  const [reload, setReload] = useState(0);
 
   const {
     data: userIdData,
@@ -61,7 +62,7 @@ const User = () => {
       }
     };
     fetchUser();
-  }, [params]);
+  }, [params, reload]);
 
   const handleLogout = async () => {
     try {
@@ -90,6 +91,7 @@ const User = () => {
             show={showProfileEdit}
             setShowEdit={setShowProfileEdit}
             onClose={() => setShowProfileEdit(false)}
+            setReload={setReload}
             user={{
               first_name: user.first_name,
               last_name: user.last_name,

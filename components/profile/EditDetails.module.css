@@ -1,3 +1,34 @@
+.darkModal {
+  margin-top: 20px !important;
+  overflow: auto;
+  max-height: 80vh !important;
+}
+/* Webkit browsers (Chrome, Edge, Safari) */
+.darkModal::-webkit-scrollbar {
+  width: 8px; /* thickness */
+}
+
+.darkModal::-webkit-scrollbar-track {
+  background: #1a1a1a; /* track color */
+  border-radius: 4px;
+}
+
+.darkModal::-webkit-scrollbar-thumb {
+  background-color: #555; /* thumb color */
+  border-radius: 4px;
+  border: 2px solid #1a1a1a; /* creates padding around thumb */
+}
+
+.darkModal::-webkit-scrollbar-thumb:hover {
+  background-color: #888; /* hover effect */
+}
+
+/* Firefox */
+.darkModal {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #1a1a1a; /* thumb track */
+}
+
 :global(.dark-theme) .darkModal {
   background-color: #1a1a1a;
   color: #fff;
@@ -37,4 +68,64 @@
 
 :global(.dark-theme) .darkModal label {
   color: #ddd;
+}
+/* EditDetails.module.css */
+
+/* Modal container */
+.Modal {
+  padding: 24px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: "Fira Code", monospace; /* monospaced for JSON style */
+  border-radius: 12px;
+  background-color: #0d0d0d;
+  max-height: 80vh;
+  overflow-y: auto;
+  white-space: pre-wrap; /* wrap long text */
+  word-break: break-word;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+/* Highlight keys and values */
+.jsonKey {
+  color: #d63384; /* pink/magenta keys */
+  font-weight: 600;
+}
+
+.jsonValue {
+  color: #1c7ed6; /* blue values */
+}
+
+.jsonBoolean {
+  color: #28a745; /* green for true */
+  font-weight: 600;
+}
+
+.jsonBooleanFalse {
+  color: #dc3545; /* red for false */
+  font-weight: 600;
+}
+
+/* Dark mode */
+:global(.dark-theme) .darkModal {
+  background-color: #1a1a1a;
+  color: #e1e1e1;
+}
+
+:global(.dark-theme) .darkModal .jsonKey {
+  color: #ff6b6b;
+}
+
+:global(.dark-theme) .darkModal .jsonValue {
+  color: #4dabf7;
+}
+
+:global(.dark-theme) .darkModal .jsonBoolean {
+  color: #51cf66;
+}
+
+:global(.dark-theme) .darkModal .jsonBooleanFalse {
+  color: #ff6b6b;
 }
