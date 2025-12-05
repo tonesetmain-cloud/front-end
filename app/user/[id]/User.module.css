@@ -141,11 +141,26 @@
   margin-bottom: 10px;
 }
 
+.buttonWrapper {
+  display: flex;
+  justify-content: center; /* horizontal center */
+  margin-top: 10px; /* optional spacing */
+}
+
 .redirectCanva {
   border: none;
   background: none;
+  color: var(--text-color);
+}
+
+.redirectCanva:hover {
+  color: var(--royal-blue);
 }
 
 .projectDetailsBtn {
-  position: relative;
+  border: none;
+  border-radius: var(--btn-radius);
+  padding: 8px;
+  background-color: black;
+  color: white;
 }

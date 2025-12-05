@@ -133,6 +133,7 @@ const SignUp = () => {
               }
               inputStyle={{ width: "100%" }}
               containerStyle={{ width: "100%" }}
+              enableSearch
               inputProps={{
                 name: "phoneNumber",
                 required: true,

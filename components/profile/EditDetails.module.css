@@ -1,0 +1,40 @@
+:global(.dark-theme) .darkModal {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+:global(.dark-theme) .darkModal .modal-header,
+:global(.dark-theme) .darkModal .modal-footer {
+  border: none;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+:global(.dark-theme) .darkModal .modal-body {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+:global(.dark-theme) .darkModal .form-control {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+:global(.dark-theme) .darkModal .form-control:focus {
+  background-color: #1f1f1f;
+  color: #fff;
+  border-color: #666;
+}
+
+:global(.dark-theme) .darkModal input,
+:global(.dark-theme) .darkModal .form-control {
+  background: #23252b;
+  color: #e1e1e1;
+  border: 1.5px solid #353755;
+  z-index: 100;
+}
+
+:global(.dark-theme) .darkModal label {
+  color: #ddd;
+}

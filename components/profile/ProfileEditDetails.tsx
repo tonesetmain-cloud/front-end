@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
+import styles from "./EditDetails.module.css";
 
 type UserProps = {
   first_name: string;
@@ -57,7 +58,11 @@ const ProfileEditDetails: React.FC<props> = ({
   };
 
   return (
-    <Modal show={show} onHide={onClose} centered>
+    <Modal
+      show={show}
+      onHide={onClose}
+      centered
+      contentClassName={styles.darkModal}>
       <Modal.Header closeButton>
         <Modal.Title>Edit your details</Modal.Title>
       </Modal.Header>
@@ -94,17 +99,21 @@ const ProfileEditDetails: React.FC<props> = ({
             />
           </Form.Group>
 
-          <Form.Group className="mb-3">
+          <Form.Group className={`mb-3 ${styles.formGroupPhone}`}>
             <Form.Label>Phone number</Form.Label>
             <PhoneInput
               country={"us"}
               value={form.phone_number}
               onChange={handlePhoneChange}
-              inputStyle={{ width: "100%" }}
-              containerStyle={{ width: "100%" }}
+              containerClass={styles.phoneInputContainer}
+              inputClass={styles.phoneInput}
+              buttonClass={styles.flagDropdown}
+              dropdownClass={styles.countryList}
               inputProps={{
                 name: "phone_number",
               }}
+              enableSearch
+              searchClass={styles.countryItem}
             />
           </Form.Group>
 

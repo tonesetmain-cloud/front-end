@@ -122,20 +122,24 @@ const User = () => {
               <div className={styles.card} key={project.id}>
                 <h3>{project.business_name}</h3>
                 <p>Business Type: {project.business_type}</p>
-                <button
-                  className={styles.redirectCanva}
-                  onClick={() => {
-                    router.push("/canva");
-                  }}>
-                  Go To Canva Page &gt;
-                </button>
-                <button
-                  className={styles.projectDetailsBtn}
-                  onClick={() => {
-                    setShowProjectDetails(true);
-                  }}>
-                  Details
-                </button>
+                <div className={styles.buttonWrapper}>
+                  <button
+                    className={styles.redirectCanva}
+                    onClick={() => {
+                      router.push("/canva");
+                    }}>
+                    Go To Canva Page &gt;
+                  </button>
+                </div>
+                <div className={styles.buttonWrapper}>
+                  <button
+                    className={styles.projectDetailsBtn}
+                    onClick={() => {
+                      setShowProjectDetails(true);
+                    }}>
+                    Details
+                  </button>
+                </div>
                 {user && projectsData && (
                   <ProjectDetails
                     project={project}

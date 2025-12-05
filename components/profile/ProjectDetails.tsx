@@ -1,7 +1,7 @@
 import React from "react";
 import { projects } from "@/types/types";
 import Modal from "react-bootstrap/Modal";
-
+import styles from "./EditDetails.module.css";
 type props = {
   project: projects;
   show: boolean;
@@ -11,7 +11,11 @@ type props = {
 const ProjectDetails: React.FC<props> = ({ project, show, onClose }) => {
   return (
     <div>
-      <Modal show={show} centered onHide={onClose}>
+      <Modal
+        show={show}
+        centered
+        onHide={onClose}
+        contentClassName={styles.darkModal}>
         <Modal.Header closeButton>
           <Modal.Title>Project details</Modal.Title>
         </Modal.Header>
