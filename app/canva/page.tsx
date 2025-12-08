@@ -17,7 +17,7 @@ import SystemDesign from "@/components/systemDesign/SystemDesign";
 import { fetchUserId } from "@/lib/fetchUserId";
 import Sidebar from "@/components/canvas/Sidebar";
 import TopMenu from "@/components/canvas/TopMenu";
-import { version } from "os";
+import ChatBot from "@/components/chat/ChatBot";
 
 const CanvaPage = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS;
@@ -154,6 +154,9 @@ const CanvaPage = () => {
           <TechStack id={selectedId} techStackVersion={techStackVersion} />
         )}
         {screen == "system-design" && <SystemDesign id={selectedId} />}
+      </div>
+      <div className={styles.chatContainer}>
+        <ChatBot />
       </div>
     </div>
   );
