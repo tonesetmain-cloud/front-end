@@ -21,5 +21,76 @@
   background: none;
   border: none;
   position: fixed;
+  color: var(--text-color);
   right: 30px;
+}
+
+.ChatBox {
+  width: 350px;
+  height: 500px;
+  background: #1e1f23;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Messages */
+.messagesArea {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.botMessage {
+  max-width: 80%;
+  background: #2f3138;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+.userMessage {
+  max-width: 80%;
+  align-self: flex-end;
+  background: #4c65f6;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+/* Input Area */
+.inputArea {
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  background: #2a2b32;
+}
+
+.chatInput {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #34353c;
+  color: #fff;
+}
+
+.sendBtn,
+.micBtn {
+  background: #4c65f6;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.micBtn {
+  background: #3a3c43;
 }

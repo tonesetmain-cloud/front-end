@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import styles from "./ChatBot.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faXmark,
+  faPaperPlane,
+  faMicrophone,
+} from "@fortawesome/free-solid-svg-icons";
 
 type props = {};
 
@@ -41,6 +45,29 @@ const ChatBot: React.FC<props> = ({}) => {
                 setIsChatbotOpen(false);
               }}>
               <FontAwesomeIcon icon={faXmark} />
+            </button>
+          </div>
+          <div className={styles.messagesArea}>
+            {/* Example messages */}
+            <div className={styles.botMessage}>Hello! How can I help you?</div>
+            <div className={styles.userMessage}>
+              Tell me about branding colors
+            </div>
+          </div>
+
+          {/* Input area */}
+          <div className={styles.inputArea}>
+            <input
+              className={styles.chatInput}
+              placeholder="Type your message..."
+            />
+
+            <button className={styles.micBtn}>
+              <FontAwesomeIcon icon={faMicrophone} />
+            </button>
+
+            <button className={styles.sendBtn}>
+              <FontAwesomeIcon icon={faPaperPlane} />
             </button>
           </div>
         </div>
