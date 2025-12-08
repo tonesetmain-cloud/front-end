@@ -10,30 +10,22 @@
   background-color: white;
   color: black;
 }
-.ChatBox {
-  height: 500px;
-  background-color: red;
-  border-radius: 13px;
-  width: 300px;
-}
-
-.crossBtn {
-  background: none;
-  border: none;
-  position: fixed;
-  color: var(--text-color);
-  right: 30px;
-}
 
 .ChatBox {
   width: 350px;
   height: 500px;
-  background: #1e1f23;
-  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  background: #dcdbdb;
+  border-radius: 13px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+:global(.dark-theme) .ChatBox {
+  background: #1e1f23;
 }
 
 /* Messages */
@@ -43,7 +35,13 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  min-height: 0;
   gap: 12px;
+
+  background-image: url("/images/chat/vegapunk.svg");
+  background-size: contain; /* or cover */
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .botMessage {
@@ -68,6 +66,10 @@
   display: flex;
   padding: 10px;
   gap: 10px;
+  background-color: white;
+}
+
+:global(.dark-theme).inputArea {
   background: #2a2b32;
 }
 
@@ -77,8 +79,12 @@
   border-radius: 8px;
   border: none;
   outline: none;
+  background: #f5f5f5;
+  color: #000;
+}
+
+:global(.dark-theme) .chatInput {
   background: #34353c;
-  color: #fff;
 }
 
 .sendBtn,
@@ -93,4 +99,16 @@
 
 .micBtn {
   background: #3a3c43;
+}
+
+.ChatBox.fullscreen {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 500px;
+  max-width: 600px !important;
+  height: 80vh;
+  box-sizing: border-box;
+  overflow: auto;
+  z-index: 9999;
 }

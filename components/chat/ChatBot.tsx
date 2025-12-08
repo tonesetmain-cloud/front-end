@@ -12,7 +12,7 @@ type props = {};
 
 const ChatBot: React.FC<props> = ({}) => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
-  const [isMaximized, setIsMaximized] = React.useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
   return (
     <div>
       {!isChatbotOpen && (
@@ -26,51 +26,51 @@ const ChatBot: React.FC<props> = ({}) => {
       )}
 
       {isChatbotOpen && (
-        <div className={styles.ChatBox}>
-          <div className="MacButtons">
-            <button
-              className="redButton"
-              onClick={() => setIsMaximized(false)}
-            />
-            <button
-              className="greenButton"
-              onClick={() => {
-                setIsMaximized(true);
-              }}
-            />
-            <p className="title">Chat</p>
-            <button
-              className={styles.crossBtn}
-              onClick={() => {
-                setIsChatbotOpen(false);
-              }}>
-              <FontAwesomeIcon icon={faXmark} />
-            </button>
-          </div>
-          <div className={styles.messagesArea}>
-            {/* Example messages */}
-            <div className={styles.botMessage}>Hello! How can I help you?</div>
-            <div className={styles.userMessage}>
-              Tell me about branding colors
+        <>
+          <div
+            className={`${styles.ChatBox} ${
+              isMaximized ? styles.fullscreen : ""
+            }`}>
+            <div className="MacButtons">
+              <button
+                className="redButton"
+                onClick={() => setIsChatbotOpen(false)}
+              />
+              <button
+                className="greenButton"
+                onClick={() => {
+                  setIsMaximized(!isMaximized);
+                }}
+              />
+              <p className="title">Chat</p>
+            </div>
+            <div className={styles.messagesArea}>
+              {/* Example messages */}
+              <div className={styles.botMessage}>
+                Hello! How can I help you?
+              </div>
+              <div className={styles.userMessage}>
+                Tell me about branding colors
+              </div>
+            </div>
+
+            {/* Input area */}
+            <div className={styles.inputArea}>
+              <input
+                className={styles.chatInput}
+                placeholder="Type your message..."
+              />
+
+              <button className={styles.micBtn}>
+                <FontAwesomeIcon icon={faMicrophone} />
+              </button>
+
+              <button className={styles.sendBtn}>
+                <FontAwesomeIcon icon={faPaperPlane} />
+              </button>
             </div>
           </div>
-
-          {/* Input area */}
-          <div className={styles.inputArea}>
-            <input
-              className={styles.chatInput}
-              placeholder="Type your message..."
-            />
-
-            <button className={styles.micBtn}>
-              <FontAwesomeIcon icon={faMicrophone} />
-            </button>
-
-            <button className={styles.sendBtn}>
-              <FontAwesomeIcon icon={faPaperPlane} />
-            </button>
-          </div>
-        </div>
+        </>
       )}
     </div>
   );

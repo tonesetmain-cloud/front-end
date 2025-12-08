@@ -106,10 +106,13 @@ const UserFlow: React.FC<props> = ({ nodesData, edgesData }) => {
       {isMaximized && <div className={styles.pageBlur}></div>}
       <div className={`${styles.card} ${isMaximized ? styles.fullscreen : ""}`}>
         <div className="MacButtons">
-          <button className="redButton" onClick={() => setIsMaximized(false)} />
+          <button
+            className="dissableButton"
+            onClick={() => setIsMaximized(false)}
+          />
           <button
             className="greenButton"
-            onClick={() => setIsMaximized(true)}
+            onClick={() => setIsMaximized(!isMaximized)}
           />
           <p className="title">User Flow</p>
         </div>
