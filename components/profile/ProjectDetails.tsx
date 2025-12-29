@@ -41,15 +41,17 @@ const ProjectDetails: React.FC<props> = ({ project, show, onClose }) => {
                   : styles.jsonBooleanFalse;
               }
 
+              let displayValue = "";
+              if (value === null) displayValue = "null";
+              else if (value === undefined) displayValue = "undefined";
+              else if (typeof value === "string") displayValue = `"${value}"`;
+              else displayValue = value.toString();
+
               return (
                 <div key={i}>
                   <span className={styles.jsonKey}>"{key}"</span>:{" "}
-                  <span className={valueClass}>
-                    {typeof value === "string"
-                      ? `"${value}"`
-                      : value.toString()}
-                  </span>
-                  {i < Object.entries(project).length - 5 ? "," : ""}
+                  <span className={valueClass}>{displayValue}</span>
+                  {i < filtered.length - 1 ? "," : ""}
                 </div>
               );
             })}

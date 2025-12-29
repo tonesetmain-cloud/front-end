@@ -6,6 +6,8 @@ import LiquidEther from "@/components/home/LiquidEther";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUserId } from "@/lib/fetchUserId";
 import { useRouter } from "next/navigation";
+import { projects } from "@/types/types";
+import { fetchProjects } from "@/lib/fetchProjects";
 
 const Welcome = () => {
   const router = useRouter();
@@ -32,8 +34,21 @@ const Welcome = () => {
     enabled: false, // completely disable auto-fetch
   });
 
+  const {
+    data: projectsData,
+    isLoading: isProjectsLoading,
+    error: projectsError,
+  } = useQuery<projects[], Error>({
+    queryKey: ["projects", userIdData],
+    queryFn: () => fetchProjects(baseUrl!),
+  });
+
   const handleClick = () => {
     if (userIdData) {
+      if (!projectsData || projectsData.length === 0) {
+        router.push("/questions");
+        return;
+      }
       router.push("/canva");
     } else {
       router.push("/signin");

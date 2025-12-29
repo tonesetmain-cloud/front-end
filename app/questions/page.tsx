@@ -1,16 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WithAuth from "@/components/WithAuth";
 import styles from "./Questions.module.css";
 import Form from "react-bootstrap/Form";
+import { useRouter } from "next/navigation";
 import Button from "react-bootstrap/Button";
-
+import axios from "axios";
 import {
   onboardingQuestionsSelect,
   onboardingQuestionsTextFormat,
   questionKeyMap,
 } from "./questions";
 import NavBar from "@/components/navbar/Navbar";
+import { format } from "path";
 
 type selectionQuestion = {
   [key: string]: string[] | undefined;
@@ -22,6 +24,8 @@ type informationType = {
 
 const QuestionsPage = () => {
   const [information, setInformation] = useState<informationType>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInformation({ ...information, [e.target.name]: e.target.value });
@@ -44,7 +48,7 @@ const QuestionsPage = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const missingAnswers = onboardingQuestionsSelect.filter((q) => {
       const key = Object.keys(q)[0];
@@ -68,6 +72,36 @@ const QuestionsPage = () => {
     });
 
     console.log("submitted info:", formattedData);
+    try {
+      setIsSubmitting(true);
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS}/business/business-details`,
+        formattedData,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log("response", response.data.data.id);
+      const requests = [
+        axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS}/business/send-prompt-to-ai-service/${response.data.data.id}`,
+          { withCredentials: true }
+        ),
+        axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL_BUSINESS}/business/send-prompt-to-ai-service-for-tech-stack/${response.data.data.id}`,
+          { withCredentials: true }
+        ),
+      ];
+      console.log("Sending prompts to AI services...");
+      const results = await Promise.all(requests);
+      console.log("AI service responses:", results);
+      router.push("/canva");
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Failed to submit. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -123,8 +157,12 @@ const QuestionsPage = () => {
               }
             )}
 
-            <Button variant="primary" className={styles.btn} type="submit">
-              Submit
+            <Button
+              variant="primary"
+              className={styles.btn}
+              type="submit"
+              disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Submit"}
             </Button>
           </Form>
         </div>
