@@ -8,11 +8,12 @@ type props = {
 const SystemDesign: React.FC<props> = ({ id }) => {
   return (
     <div className={styles.systemDesignPage}>
-      <div className={styles.objects}></div>
+      <h4>This feature is locked for now 🔒 We’re working on it.</h4>
+      {/* <div className={styles.objects}></div>
       <div className={styles.editField}>
         <h1>System Design</h1>
-        <h4>{id}</h4>
-      </div>
+      </div> */}
+      å
     </div>
   );
 };
