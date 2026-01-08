@@ -4,7 +4,7 @@ import styles from "./AILoop.module.css";
 const AILoop: React.FC = () => {
   return (
     <div className={styles.siriorbContainer}>
-      <h3>Loading...</h3>
+      <h3>Generating...</h3>
       <div className={styles.blobs}>
         <svg viewBox="0 0 1200 1200">
           {[1, 2, 3, 4].map((i) => (
