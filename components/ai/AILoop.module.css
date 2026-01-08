@@ -1,0 +1,171 @@
+.siriorbContainer {
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: transparent;
+}
+
+.blobs {
+  width: min(60vw, 60vh);
+  height: min(60vw, 60vh);
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.blobs svg {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.blob {
+  animation: rotate 25s infinite alternate ease-in-out;
+  transform-origin: 50% 50%;
+  opacity: 0.8;
+}
+
+.blob.alt {
+  animation-direction: alternate-reverse;
+  opacity: 0.3;
+}
+
+.blob path {
+  transform-origin: 50% 50%;
+  transform: scale(0.8);
+  transition: fill 800ms ease;
+  animation: blob-anim-1 5s infinite alternate
+    cubic-bezier(0.45, 0.2, 0.55, 0.8);
+}
+
+/* Palette 1 only */
+:root {
+  --blob-1: #984ddf;
+  --blob-2: #6c6fff;
+  --blob-3: #74d9e1;
+  --blob-4: #ffffff;
+}
+
+.blob-1 path {
+  fill: var(--blob-1);
+}
+
+.blob-2 {
+  animation-duration: 18s;
+  animation-direction: alternate-reverse;
+}
+
+.blob-2.alt {
+  animation-direction: alternate;
+}
+
+.blob-2 path {
+  fill: var(--blob-2);
+  animation-name: blob-anim-2;
+  animation-duration: 7s;
+
+  transform: scale(0.9);
+}
+
+.blob-3 {
+  animation-duration: 23s;
+}
+
+.blob-3 path {
+  fill: var(--blob-3);
+  animation-name: blob-anim-3;
+  animation-duration: 6s;
+  transform: scale(0.76);
+}
+
+.blob-4 {
+  animation-duration: 31s;
+  animation-direction: alternate-reverse;
+  opacity: 0.9;
+}
+
+.blob-4.alt {
+  animation-direction: alternate;
+  opacity: 0.8;
+}
+
+.blob-4 path {
+  fill: var(--blob-4);
+  animation-name: blob-anim-4;
+  animation-duration: 10s;
+  filter: blur(10rem);
+  transform: scale(0.5);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(30deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animating SVG shape with CSS (limited browser support, fallback needed if issues) */
+@keyframes blob-anim-1 {
+  0% {
+    d: path("M 100 600 q 0 -500, 500 -500 t 500 500 t -500 500 T 100 600 z");
+  }
+  30% {
+    d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
+  }
+  70% {
+    d: path("M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z");
+  }
+  100% {
+    d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
+  }
+}
+
+@keyframes blob-anim-2 {
+  0% {
+    d: path("M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z");
+  }
+  40% {
+    d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
+  }
+  80% {
+    d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
+  }
+  100% {
+    d: path("M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z");
+  }
+}
+
+@keyframes blob-anim-3 {
+  0% {
+    d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
+  }
+  35% {
+    d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
+  }
+  75% {
+    d: path("M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z");
+  }
+  100% {
+    d: path("M 100 600 q 0 -400, 500 -500 t 400 500 t -500 500 T 100 600 z");
+  }
+}
+
+@keyframes blob-anim-4 {
+  0% {
+    d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
+  }
+  30% {
+    d: path("M 100 600 q 100 -600, 500 -500 t 400 500 t -500 500 T 100 600 z");
+  }
+  70% {
+    d: path("M 100 600 q -50 -400, 500 -500 t 450 550 t -500 500 T 100 600 z");
+  }
+  100% {
+    d: path("M 150 600 q 0 -600, 500 -500 t 500 550 t -500 500 T 150 600 z");
+  }
+}

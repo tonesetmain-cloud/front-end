@@ -12,7 +12,7 @@ import {
   questionKeyMap,
 } from "./questions";
 import NavBar from "@/components/navbar/Navbar";
-import { format } from "path";
+import AILoop from "@/components/ai/AILoop";
 
 type selectionQuestion = {
   [key: string]: string[] | undefined;
@@ -107,6 +107,14 @@ const QuestionsPage = () => {
   return (
     <>
       <NavBar flag={true} />
+      {isSubmitting && (
+        <div className={styles.overlay}>
+          <div className={styles.popup}>
+            <AILoop />
+          </div>
+        </div>
+      )}
+
       <div className={styles.container}>
         <h1 className={styles.heading}>Business Questions</h1>
         <div className={styles.formCard}>
