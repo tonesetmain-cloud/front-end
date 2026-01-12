@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./TechStack.module.css";
 import Card from "./cards/Cards";
-import { BestPracticeTechStack } from "./const";
 import axios from "axios";
 
 type props = { id: string; techStackVersion: any };

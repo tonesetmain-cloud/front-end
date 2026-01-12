@@ -13,6 +13,11 @@ type props = {};
 const ChatBot: React.FC<props> = ({}) => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
+  const [messages, setMessages] = useState<string[]>([
+    "Hello! How can I help you?",
+  ]);
+  const [inputValue, setInputValue] = useState("");
+
   return (
     <div>
       {!isChatbotOpen && (
