@@ -49,9 +49,22 @@ h2 {
   background-color: white;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
-    0 8px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    0 4px 10px rgba(0, 0, 0, 0.03);
   z-index: 8888;
+}
+
+.MacButtonsDragArea {
+  flex: 1; /* fills remaining space */
+  display: flex;
+  align-items: center;
+  padding-left: 12px; /* optional spacing from buttons */
+  cursor: grab;
+  user-select: none; /* prevents text selection while dragging */
+}
+
+.MacButtonsDragArea:active {
+  cursor: grabbing;
 }
 
 .title {

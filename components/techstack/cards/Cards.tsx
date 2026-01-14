@@ -4,11 +4,16 @@ import styles from "./Cards.module.css"; // optional CSS for styling
 type CardProps = {
   title: string;
   stack: Record<string, any>;
+  dragHandleProps?: {
+    attributes: any;
+    listeners: any;
+    setActivatorNodeRef: (node: HTMLElement | null) => void;
+  };
 };
 
-const Card: React.FC<CardProps> = ({ title, stack }) => {
+const Card: React.FC<CardProps> = ({ title, stack, dragHandleProps }) => {
   const [isMaximized, setIsMaximized] = React.useState(false);
-  const [titleName, setTitleName] = React.useState("");
+
   return (
     <div className={styles.overlayWrapper}>
       {isMaximized && <div className={styles.pageBlur}></div>}
@@ -22,7 +27,15 @@ const Card: React.FC<CardProps> = ({ title, stack }) => {
             className="greenButton"
             onClick={() => setIsMaximized(!isMaximized)}
           />
-          <p className="title">{title}</p>
+
+          <div
+            className="MacButtonsDragArea"
+            ref={dragHandleProps?.setActivatorNodeRef}
+            {...dragHandleProps?.attributes}
+            {...dragHandleProps?.listeners}
+            style={{ cursor: "grab" }}>
+            <p className="title">{title}</p>
+          </div>
         </div>
 
         {isMaximized ? (
@@ -42,7 +55,14 @@ const Card: React.FC<CardProps> = ({ title, stack }) => {
                       </p>
                     </div>
                     {details.reason && <p>{details.reason}</p>}
-                    {details.docs && <p>{details.docs}</p>}
+                    {details.docs && (
+                      <a
+                        href={details.docs}
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        {details.docs}
+                      </a>
+                    )}
                     {details.alternatives && <p>{details.alternatives}</p>}
                   </li>
                 ))}

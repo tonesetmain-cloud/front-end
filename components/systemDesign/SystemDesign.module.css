@@ -3,9 +3,8 @@
   display: flex;
   justify-content: center; /* center left–right */
   align-items: center; /* center top–bottom */
-  background-color: #f5f7fa;
   width: 100%;
-  height: 80vh;
+  height: 84.7vh;
   text-align: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
