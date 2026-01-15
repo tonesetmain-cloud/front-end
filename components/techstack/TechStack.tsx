@@ -79,34 +79,6 @@ const TechStack: React.FC<props> = ({ techStackVersion }) => {
       return arrayMove(prev, oldIndex, newIndex);
     });
   };
-  // return (
-  //   <div className={`d-flex justify-content-center ${styles.techStackPage}`}>
-  //     <Card title="Frontend" stack={techStackVersion.frontend} />
-  //     <Card title="Backend" stack={techStackVersion.backend} />
-  //     <Card
-  //       title="Cloud Services Frontend"
-  //       stack={techStackVersion.frontendCloudService}
-  //     />
-  //     <Card
-  //       title="Cloud Services Backend"
-  //       stack={techStackVersion.backendCloudService}
-  //     />
-  //     <Card title="DevOps" stack={techStackVersion.devOps} />
-  //     <Card title="Testing" stack={techStackVersion.testing} />
-  //     <Card
-  //       title="Analytics & Productivity"
-  //       stack={techStackVersion.analyticsTools}
-  //     />
-  //     <Card
-  //       title="Communication Tools"
-  //       stack={techStackVersion.communicationTools}
-  //     />
-  //     <Card title="Security" stack={techStackVersion.security} />
-  //     <Card title="AI Automation" stack={techStackVersion.aiAutomation} />
-
-  //     <Card title="Mobile" stack={techStackVersion.mobile} />
-  //   </div>
-  // );
 
   return (
     <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd}>

@@ -40,7 +40,7 @@ const Card: React.FC<CardProps> = ({ title, stack, dragHandleProps }) => {
 
         {isMaximized ? (
           <div className={styles.cardContent}>
-            <ul className={styles.stackList}>
+            <ul className={styles.stackListMaximized}>
               {Object.entries(stack)
                 .filter(([key]) => key !== "id" && key !== "version_id")
                 .map(([cat, details]) => (
@@ -54,16 +54,29 @@ const Card: React.FC<CardProps> = ({ title, stack, dragHandleProps }) => {
                         {details.estimatedCostPerMonth}
                       </p>
                     </div>
-                    {details.reason && <p>{details.reason}</p>}
-                    {details.docs && (
-                      <a
-                        href={details.docs}
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        {details.docs}
-                      </a>
+                    {details.reason && (
+                      <p className={styles.maximizedPara}>
+                        <b>Reason for picking this: </b>
+                        {details.reason}
+                      </p>
                     )}
-                    {details.alternatives && <p>{details.alternatives}</p>}
+                    {details.docs && (
+                      <div className={styles.maximizedPara}>
+                        <b>Documentation: </b>
+                        <a
+                          href={details.docs}
+                          target="_blank"
+                          rel="noopener noreferrer">
+                          {details.docs}
+                        </a>
+                      </div>
+                    )}
+                    {details.alternatives && (
+                      <p className={styles.maximizedPara}>
+                        <b>Alternatives: </b>
+                        {(details.alternatives as string[]).join(", ")}
+                      </p>
+                    )}
                   </li>
                 ))}
             </ul>
